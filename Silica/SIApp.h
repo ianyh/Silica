@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SDApp : NSObject
+@interface SIApp : NSObject
 
 - (id) initWithPID:(pid_t)pid;
 - (id) initWithRunningApp:(NSRunningApplication*)app;

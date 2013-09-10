@@ -6,20 +6,20 @@
 //  Copyright (c) 2013 Steven Degutis. All rights reserved.
 //
 
-#import "SDWindow.h"
+#import "SIWindow.h"
 
-#import "SDApp.h"
+#import "SIApp.h"
 
 #import "NSScreen+SilicaExtension.h"
 #import "SDUniversalAccessHelper.h"
 
-@interface SDWindow ()
+@interface SIWindow ()
 
 @property CFTypeRef window;
 
 @end
 
-@implementation SDWindow
+@implementation SIWindow
 
 - (id) initWithElement:(AXUIElementRef)win {
     if (self = [super init]) {
@@ -33,7 +33,7 @@
         CFRelease(self.window);
 }
 
-- (BOOL) isEqual:(SDWindow*)other {
+- (BOOL) isEqual:(SIWindow*)other {
     return ([self isKindOfClass: [other class]] &&
             CFEqual(self.window, other.window));
 }
@@ -48,7 +48,7 @@
     
     NSMutableArray* windows = [NSMutableArray array];
     
-    for (SDApp* app in [SDApp runningApps]) {
+    for (SIApp* app in [SIApp runningApps]) {
         [windows addObjectsFromArray:[app allWindows]];
     }
     
@@ -63,7 +63,7 @@
     if ([SDUniversalAccessHelper complainIfNeeded])
         return nil;
     
-    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(SDWindow* win, NSDictionary *bindings) {
+    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(SIWindow* win, NSDictionary *bindings) {
         return ![[win app] isHidden]
         && ![win isWindowMinimized]
         && [win isNormalWindow];
@@ -71,13 +71,13 @@
 }
 
 - (NSArray*) otherWindowsOnSameScreen {
-    return [[SDWindow visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(SDWindow* win, NSDictionary *bindings) {
+    return [[SIWindow visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(SIWindow* win, NSDictionary *bindings) {
         return !CFEqual(self.window, win.window) && [[self screen] isEqual: [win screen]];
     }]];
 }
 
 - (NSArray*) otherWindowsOnAllScreens {
-    return [[SDWindow visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(SDWindow* win, NSDictionary *bindings) {
+    return [[SIWindow visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(SIWindow* win, NSDictionary *bindings) {
         return !CFEqual(self.window, win.window);
     }]];
 }
@@ -91,7 +91,7 @@
     return systemWideElement;
 }
 
-+ (SDWindow*) focusedWindow {
++ (SIWindow*) focusedWindow {
     if ([SDUniversalAccessHelper complainIfNeeded])
         return nil;
     
@@ -105,7 +105,7 @@
         CFRelease(app);
         
         if (result == kAXErrorSuccess) {
-            SDWindow* window = [[SDWindow alloc] init];
+            SIWindow* window = [[SIWindow alloc] init];
             window.window = win;
             return window;
         }
@@ -240,8 +240,8 @@
         return 0;
 }
 
-- (SDApp*) app {
-    return [[SDApp alloc] initWithPID:[self processIdentifier]];
+- (SIApp*) app {
+    return [[SIApp alloc] initWithPID:[self processIdentifier]];
 }
 
 - (id) getWindowProperty:(NSString*)propType withDefaultValue:(id)defaultValue {
@@ -292,13 +292,13 @@ NSPoint SDMidpoint(NSRect r) {
 - (NSArray*) windowsInDirectionFn:(double(^)(double angle))whichDirectionFn
                 shouldDisregardFn:(BOOL(^)(double deltaX, double deltaY))shouldDisregardFn
 {
-    SDWindow* thisWindow = [SDWindow focusedWindow];
+    SIWindow* thisWindow = [SIWindow focusedWindow];
     NSPoint startingPoint = SDMidpoint([thisWindow frame]);
     
     NSArray* otherWindows = [thisWindow otherWindowsOnAllScreens];
     NSMutableArray* closestOtherWindows = [NSMutableArray arrayWithCapacity:[otherWindows count]];
     
-    for (SDWindow* win in otherWindows) {
+    for (SIWindow* win in otherWindows) {
         NSPoint otherPoint = SDMidpoint([win frame]);
         
         double deltaX = otherPoint.x - startingPoint.x;
@@ -328,7 +328,7 @@ NSPoint SDMidpoint(NSRect r) {
 }
 
 - (void) focusFirstValidWindowIn:(NSArray*)closestWindows {
-    for (SDWindow* win in closestWindows) {
+    for (SIWindow* win in closestWindows) {
         if ([win focusWindow])
             break;
     }

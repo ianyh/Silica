@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Silica : NSObject
-
-@end
+#import <Silica/SIWindow.h>
+#import <Silica/SIApp.h>
+#import <Silica/NSScreen+SilicaExtension.h>

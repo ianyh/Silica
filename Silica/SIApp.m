@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Giant Robot Software. All rights reserved.
 //
 
-#import "SDApp.h"
+#import "SIApp.h"
 
-#import "SDWindow.h"
+#import "SIWindow.h"
 #import "SDUniversalAccessHelper.h"
 
 #import "SDAppStalker.h"
@@ -16,7 +16,7 @@
 #import "SDObserver.h"
 
 
-@interface SDApp ()
+@interface SIApp ()
 
 @property AXUIElementRef app;
 @property (readwrite) pid_t pid;
@@ -28,7 +28,7 @@
 @end
 
 
-@implementation SDApp
+@implementation SIApp
 
 + (NSArray*) runningApps {
     if ([SDUniversalAccessHelper complainIfNeeded])
@@ -37,7 +37,7 @@
     NSMutableArray* apps = [NSMutableArray array];
     
     for (NSRunningApplication* runningApp in [[NSWorkspace sharedWorkspace] runningApplications]) {
-        SDApp* app = [[SDApp alloc] initWithPID:[runningApp processIdentifier]];
+        SIApp* app = [[SIApp alloc] initWithPID:[runningApp processIdentifier]];
         [apps addObject:app];
     }
     
@@ -70,7 +70,7 @@
         CFRelease(self.app);
 }
 
-- (BOOL) isEqual:(SDApp*)object {
+- (BOOL) isEqual:(SIApp*)object {
     return ([self isKindOfClass: [object class]] &&
             self.pid == object.pid);
 }
@@ -83,7 +83,7 @@
     if ([SDUniversalAccessHelper complainIfNeeded])
         return nil;
     
-    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(SDWindow* win, NSDictionary *bindings) {
+    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(SIWindow* win, NSDictionary *bindings) {
         return ![[win app] isHidden]
         && ![win isWindowMinimized]
         && [win isNormalWindow];
@@ -99,7 +99,7 @@
         for (NSInteger i = 0; i < CFArrayGetCount(_windows); i++) {
             AXUIElementRef win = CFArrayGetValueAtIndex(_windows, i);
             
-            SDWindow* window = [[SDWindow alloc] initWithElement:win];
+            SIWindow* window = [[SIWindow alloc] initWithElement:win];
             [windows addObject:window];
         }
         CFRelease(_windows);
@@ -144,58 +144,58 @@
 
 - (void) startObservingStuff {
     [self.observers addObject: [SDObserver observe:kAXWindowCreatedNotification on:self.app callback:^(AXUIElementRef element) {
-        SDWindow* window = [[SDWindow alloc] initWithElement:element];
+        SIWindow* window = [[SIWindow alloc] initWithElement:element];
         [self sendJustOneNotification:SDListenEventWindowCreated withThing:window];
     }]];
     
     [self.observers addObject: [SDObserver observe:kAXUIElementDestroyedNotification on:self.app callback:^(AXUIElementRef element) {
-        SDWindow* window = [[SDWindow alloc] initWithElement:element];
+        SIWindow* window = [[SIWindow alloc] initWithElement:element];
         [self sendJustOneNotification:SDListenEventWindowClosed withThing:window];
     }]];
     
     [self.observers addObject: [SDObserver observe:kAXWindowMovedNotification on:self.app callback:^(AXUIElementRef element) {
-        SDWindow* window = [[SDWindow alloc] initWithElement:element];
+        SIWindow* window = [[SIWindow alloc] initWithElement:element];
         [self sendJustOneNotification:SDListenEventWindowMoved withThing:window];
     }]];
     
     [self.observers addObject: [SDObserver observe:kAXWindowResizedNotification on:self.app callback:^(AXUIElementRef element) {
-        SDWindow* window = [[SDWindow alloc] initWithElement:element];
+        SIWindow* window = [[SIWindow alloc] initWithElement:element];
         [self sendJustOneNotification:SDListenEventWindowResized withThing:window];
     }]];
     
     [self.observers addObject: [SDObserver observe:kAXWindowMiniaturizedNotification on:self.app callback:^(AXUIElementRef element) {
-        SDWindow* window = [[SDWindow alloc] initWithElement:element];
+        SIWindow* window = [[SIWindow alloc] initWithElement:element];
         [self sendJustOneNotification:SDListenEventWindowMinimized withThing:window];
     }]];
     
     [self.observers addObject: [SDObserver observe:kAXWindowDeminiaturizedNotification on:self.app callback:^(AXUIElementRef element) {
-        SDWindow* window = [[SDWindow alloc] initWithElement:element];
+        SIWindow* window = [[SIWindow alloc] initWithElement:element];
         [self sendJustOneNotification:SDListenEventWindowUnminimized withThing:window];
     }]];
     
     [self.observers addObject: [SDObserver observe:kAXApplicationHiddenNotification on:self.app callback:^(AXUIElementRef element) {
-        SDApp* app = [[SDApp alloc] initWithElement:element];
+        SIApp* app = [[SIApp alloc] initWithElement:element];
         [self sendJustOneNotification:SDListenEventAppHidden withThing:app];
     }]];
     
     [self.observers addObject: [SDObserver observe:kAXApplicationShownNotification on:self.app callback:^(AXUIElementRef element) {
-        SDApp* app = [[SDApp alloc] initWithElement:element];
+        SIApp* app = [[SIApp alloc] initWithElement:element];
         [self sendJustOneNotification:SDListenEventAppShown withThing:app];
     }]];
     
     [self.observers addObject: [SDObserver observe:kAXFocusedWindowChangedNotification on:self.app callback:^(AXUIElementRef element) {
-        SDWindow* window = [[SDWindow alloc] initWithElement:element];
+        SIWindow* window = [[SIWindow alloc] initWithElement:element];
         [self sendJustOneNotification:SDListenEventFocusChanged withThing:window];
     }]];
     
     [self.observers addObject: [SDObserver observe:kAXApplicationActivatedNotification on:self.app callback:^(AXUIElementRef element) {
-        SDWindow* window = [SDWindow focusedWindow];
+        SIWindow* window = [SIWindow focusedWindow];
         if (window)
             [self sendJustOneNotification:SDListenEventFocusChanged withThing:window];
     }]];
     
     [self.observers addObject: [SDObserver observe:kAXMainWindowChangedNotification on:self.app callback:^(AXUIElementRef element) {
-        SDWindow* window = [[SDWindow alloc] initWithElement:element];
+        SIWindow* window = [[SIWindow alloc] initWithElement:element];
         [self sendJustOneNotification:SDListenEventFocusChanged withThing:window];
     }]];
 }

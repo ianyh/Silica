@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "SDApp.h"
+#import "SIApp.h"
 
-@interface SDWindow : NSObject
+@interface SIWindow : NSObject
 
 - (id) initWithElement:(AXUIElementRef)win;
 
@@ -18,7 +18,7 @@
 
 + (NSArray*) allWindows;
 + (NSArray*) visibleWindows;
-+ (SDWindow*) focusedWindow;
++ (SIWindow*) focusedWindow;
 - (NSArray*) otherWindowsOnSameScreen;
 - (NSArray*) otherWindowsOnAllScreens;
 
@@ -42,7 +42,7 @@
 // other
 
 - (NSScreen*) screen;
-- (SDApp*) app;
+- (SIApp*) app;
 
 - (BOOL) isNormalWindow;
 
