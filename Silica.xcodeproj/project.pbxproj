@@ -10,6 +10,19 @@
 		942474B917DF67D700BF9B61 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942474B817DF67D700BF9B61 /* Cocoa.framework */; };
 		942474C317DF67D700BF9B61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 942474C117DF67D700BF9B61 /* InfoPlist.strings */; };
 		942474C717DF67D700BF9B61 /* Silica.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474C617DF67D700BF9B61 /* Silica.m */; };
+		942474D217DF690700BF9B61 /* SDWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474CE17DF690700BF9B61 /* SDWindow.h */; };
+		942474D317DF690700BF9B61 /* SDWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474CF17DF690700BF9B61 /* SDWindow.m */; };
+		942474D417DF690700BF9B61 /* NSScreen+SilicaExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474D017DF690700BF9B61 /* NSScreen+SilicaExtension.h */; };
+		942474D517DF690700BF9B61 /* NSScreen+SilicaExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474D117DF690700BF9B61 /* NSScreen+SilicaExtension.m */; };
+		942474D817DF692800BF9B61 /* SDApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474D617DF692800BF9B61 /* SDApp.h */; };
+		942474D917DF692800BF9B61 /* SDApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474D717DF692800BF9B61 /* SDApp.m */; };
+		942474E017DF693600BF9B61 /* SDAppStalker.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474DA17DF693600BF9B61 /* SDAppStalker.h */; };
+		942474E117DF693600BF9B61 /* SDAppStalker.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474DB17DF693600BF9B61 /* SDAppStalker.m */; };
+		942474E217DF693600BF9B61 /* SDObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474DC17DF693600BF9B61 /* SDObserver.h */; };
+		942474E317DF693600BF9B61 /* SDObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474DD17DF693600BF9B61 /* SDObserver.m */; };
+		942474E417DF693600BF9B61 /* SDUniversalAccessHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474DE17DF693600BF9B61 /* SDUniversalAccessHelper.h */; };
+		942474E517DF693600BF9B61 /* SDUniversalAccessHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474DF17DF693600BF9B61 /* SDUniversalAccessHelper.m */; };
+		942474E717DF695A00BF9B61 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942474E617DF695A00BF9B61 /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +36,19 @@
 		942474C417DF67D700BF9B61 /* Silica-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Silica-Prefix.pch"; sourceTree = "<group>"; };
 		942474C517DF67D700BF9B61 /* Silica.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Silica.h; sourceTree = "<group>"; };
 		942474C617DF67D700BF9B61 /* Silica.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Silica.m; sourceTree = "<group>"; };
+		942474CE17DF690700BF9B61 /* SDWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWindow.h; sourceTree = "<group>"; };
+		942474CF17DF690700BF9B61 /* SDWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWindow.m; sourceTree = "<group>"; };
+		942474D017DF690700BF9B61 /* NSScreen+SilicaExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScreen+SilicaExtension.h"; sourceTree = "<group>"; };
+		942474D117DF690700BF9B61 /* NSScreen+SilicaExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScreen+SilicaExtension.m"; sourceTree = "<group>"; };
+		942474D617DF692800BF9B61 /* SDApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDApp.h; sourceTree = "<group>"; };
+		942474D717DF692800BF9B61 /* SDApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDApp.m; sourceTree = "<group>"; };
+		942474DA17DF693600BF9B61 /* SDAppStalker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAppStalker.h; sourceTree = "<group>"; };
+		942474DB17DF693600BF9B61 /* SDAppStalker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAppStalker.m; sourceTree = "<group>"; };
+		942474DC17DF693600BF9B61 /* SDObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDObserver.h; sourceTree = "<group>"; };
+		942474DD17DF693600BF9B61 /* SDObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDObserver.m; sourceTree = "<group>"; };
+		942474DE17DF693600BF9B61 /* SDUniversalAccessHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUniversalAccessHelper.h; sourceTree = "<group>"; };
+		942474DF17DF693600BF9B61 /* SDUniversalAccessHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUniversalAccessHelper.m; sourceTree = "<group>"; };
+		942474E617DF695A00BF9B61 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				942474E717DF695A00BF9B61 /* IOKit.framework in Frameworks */,
 				942474B917DF67D700BF9B61 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,6 +84,7 @@
 		942474B717DF67D700BF9B61 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				942474E617DF695A00BF9B61 /* IOKit.framework */,
 				942474B817DF67D700BF9B61 /* Cocoa.framework */,
 				942474BA17DF67D700BF9B61 /* Other Frameworks */,
 			);
@@ -76,6 +104,18 @@
 		942474BE17DF67D700BF9B61 /* Silica */ = {
 			isa = PBXGroup;
 			children = (
+				942474DA17DF693600BF9B61 /* SDAppStalker.h */,
+				942474DB17DF693600BF9B61 /* SDAppStalker.m */,
+				942474DC17DF693600BF9B61 /* SDObserver.h */,
+				942474DD17DF693600BF9B61 /* SDObserver.m */,
+				942474DE17DF693600BF9B61 /* SDUniversalAccessHelper.h */,
+				942474DF17DF693600BF9B61 /* SDUniversalAccessHelper.m */,
+				942474CE17DF690700BF9B61 /* SDWindow.h */,
+				942474CF17DF690700BF9B61 /* SDWindow.m */,
+				942474D017DF690700BF9B61 /* NSScreen+SilicaExtension.h */,
+				942474D117DF690700BF9B61 /* NSScreen+SilicaExtension.m */,
+				942474D617DF692800BF9B61 /* SDApp.h */,
+				942474D717DF692800BF9B61 /* SDApp.m */,
 				942474C517DF67D700BF9B61 /* Silica.h */,
 				942474C617DF67D700BF9B61 /* Silica.m */,
 				942474BF17DF67D700BF9B61 /* Supporting Files */,
@@ -100,6 +140,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				942474D217DF690700BF9B61 /* SDWindow.h in Headers */,
+				942474D417DF690700BF9B61 /* NSScreen+SilicaExtension.h in Headers */,
+				942474D817DF692800BF9B61 /* SDApp.h in Headers */,
+				942474E017DF693600BF9B61 /* SDAppStalker.h in Headers */,
+				942474E217DF693600BF9B61 /* SDObserver.h in Headers */,
+				942474E417DF693600BF9B61 /* SDUniversalAccessHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +213,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				942474C717DF67D700BF9B61 /* Silica.m in Sources */,
+				942474D317DF690700BF9B61 /* SDWindow.m in Sources */,
+				942474D517DF690700BF9B61 /* NSScreen+SilicaExtension.m in Sources */,
+				942474D917DF692800BF9B61 /* SDApp.m in Sources */,
+				942474E117DF693600BF9B61 /* SDAppStalker.m in Sources */,
+				942474E317DF693600BF9B61 /* SDObserver.m in Sources */,
+				942474E517DF693600BF9B61 /* SDUniversalAccessHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +344,7 @@
 				942474CC17DF67D700BF9B61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
