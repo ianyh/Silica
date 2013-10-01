@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SDUniversalAccessHelper : NSObject
+@interface SIUniversalAccessHelper : NSObject
 
 + (BOOL) complainIfNeeded;
 

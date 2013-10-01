@@ -17,8 +17,8 @@
 		942474D317DF690700BF9B61 /* SIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474CF17DF690700BF9B61 /* SIWindow.m */; };
 		942474D417DF690700BF9B61 /* NSScreen+SilicaExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474D017DF690700BF9B61 /* NSScreen+SilicaExtension.h */; };
 		942474D517DF690700BF9B61 /* NSScreen+SilicaExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474D117DF690700BF9B61 /* NSScreen+SilicaExtension.m */; };
-		942474E417DF693600BF9B61 /* SDUniversalAccessHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474DE17DF693600BF9B61 /* SDUniversalAccessHelper.h */; };
-		942474E517DF693600BF9B61 /* SDUniversalAccessHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474DF17DF693600BF9B61 /* SDUniversalAccessHelper.m */; };
+		942474E417DF693600BF9B61 /* SIUniversalAccessHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474DE17DF693600BF9B61 /* SIUniversalAccessHelper.h */; };
+		942474E517DF693600BF9B61 /* SIUniversalAccessHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474DF17DF693600BF9B61 /* SIUniversalAccessHelper.m */; };
 		942474E717DF695A00BF9B61 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942474E617DF695A00BF9B61 /* IOKit.framework */; };
 		B28B89F4B76A4823818159F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9247E988D3D43269A89E5D3 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -41,8 +41,8 @@
 		942474CF17DF690700BF9B61 /* SIWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIWindow.m; sourceTree = "<group>"; };
 		942474D017DF690700BF9B61 /* NSScreen+SilicaExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScreen+SilicaExtension.h"; sourceTree = "<group>"; };
 		942474D117DF690700BF9B61 /* NSScreen+SilicaExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScreen+SilicaExtension.m"; sourceTree = "<group>"; };
-		942474DE17DF693600BF9B61 /* SDUniversalAccessHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUniversalAccessHelper.h; sourceTree = "<group>"; };
-		942474DF17DF693600BF9B61 /* SDUniversalAccessHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUniversalAccessHelper.m; sourceTree = "<group>"; };
+		942474DE17DF693600BF9B61 /* SIUniversalAccessHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUniversalAccessHelper.h; sourceTree = "<group>"; };
+		942474DF17DF693600BF9B61 /* SIUniversalAccessHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUniversalAccessHelper.m; sourceTree = "<group>"; };
 		942474E617DF695A00BF9B61 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		A44AE30DF69640C8AF2384AE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B9247E988D3D43269A89E5D3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,8 +104,8 @@
 		942474BE17DF67D700BF9B61 /* Silica */ = {
 			isa = PBXGroup;
 			children = (
-				942474E817DF6A3100BF9B61 /* Legit */,
-				942474E917DF6A3800BF9B61 /* Merge Ian's */,
+				942474C517DF67D700BF9B61 /* Silica.h */,
+				942474E817DF6A3100BF9B61 /* Classes */,
 				942474BF17DF67D700BF9B61 /* Supporting Files */,
 			);
 			path = Silica;
@@ -121,29 +121,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		942474E817DF6A3100BF9B61 /* Legit */ = {
+		942474E817DF6A3100BF9B61 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				942474C517DF67D700BF9B61 /* Silica.h */,
 				942474CE17DF690700BF9B61 /* SIWindow.h */,
 				942474CF17DF690700BF9B61 /* SIWindow.m */,
 				942474D017DF690700BF9B61 /* NSScreen+SilicaExtension.h */,
 				942474D117DF690700BF9B61 /* NSScreen+SilicaExtension.m */,
-			);
-			name = Legit;
-			sourceTree = "<group>";
-		};
-		942474E917DF6A3800BF9B61 /* Merge Ian's */ = {
-			isa = PBXGroup;
-			children = (
 				40FC6ACE17FA5A1B00856CE7 /* SIAccessibilityElement.h */,
 				40FC6ACF17FA5A1B00856CE7 /* SIAccessibilityElement.m */,
 				40FC6ACA17FA599C00856CE7 /* SIApplication.h */,
 				40FC6ACB17FA599C00856CE7 /* SIApplication.m */,
-				942474DE17DF693600BF9B61 /* SDUniversalAccessHelper.h */,
-				942474DF17DF693600BF9B61 /* SDUniversalAccessHelper.m */,
+				942474DE17DF693600BF9B61 /* SIUniversalAccessHelper.h */,
+				942474DF17DF693600BF9B61 /* SIUniversalAccessHelper.m */,
 			);
-			name = "Merge Ian's";
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,7 +149,7 @@
 				942474D217DF690700BF9B61 /* SIWindow.h in Headers */,
 				942474D417DF690700BF9B61 /* NSScreen+SilicaExtension.h in Headers */,
 				40FC6ACC17FA599C00856CE7 /* SIApplication.h in Headers */,
-				942474E417DF693600BF9B61 /* SDUniversalAccessHelper.h in Headers */,
+				942474E417DF693600BF9B61 /* SIUniversalAccessHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +255,7 @@
 				40FC6AD117FA5A1B00856CE7 /* SIAccessibilityElement.m in Sources */,
 				942474D317DF690700BF9B61 /* SIWindow.m in Sources */,
 				942474D517DF690700BF9B61 /* NSScreen+SilicaExtension.m in Sources */,
-				942474E517DF693600BF9B61 /* SDUniversalAccessHelper.m in Sources */,
+				942474E517DF693600BF9B61 /* SIUniversalAccessHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

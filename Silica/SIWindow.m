@@ -11,7 +11,7 @@
 #import "SIApplication.h"
 
 #import "NSScreen+SilicaExtension.h"
-#import "SDUniversalAccessHelper.h"
+#import "SIUniversalAccessHelper.h"
 
 @interface SIWindow ()
 
@@ -31,7 +31,7 @@
 }
 
 + (NSArray*) allWindows {
-    if ([SDUniversalAccessHelper complainIfNeeded])
+    if ([SIUniversalAccessHelper complainIfNeeded])
         return nil;
     
     NSMutableArray* windows = [NSMutableArray array];
@@ -48,7 +48,7 @@
 }
 
 + (NSArray*) visibleWindows {
-    if ([SDUniversalAccessHelper complainIfNeeded])
+    if ([SIUniversalAccessHelper complainIfNeeded])
         return nil;
     
     return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(SIWindow* win, NSDictionary *bindings) {
@@ -80,7 +80,7 @@
 }
 
 + (SIWindow*) focusedWindow {
-    if ([SDUniversalAccessHelper complainIfNeeded])
+    if ([SIUniversalAccessHelper complainIfNeeded])
         return nil;
     
     CFTypeRef app;

@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Steven Degutis. All rights reserved.
 //
 
-#import "SDUniversalAccessHelper.h"
+#import "SIUniversalAccessHelper.h"
 
-@implementation SDUniversalAccessHelper
+@implementation SIUniversalAccessHelper
 
 + (BOOL) complainIfNeeded {
     Boolean enabled = AXAPIEnabled();

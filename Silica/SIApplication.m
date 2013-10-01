@@ -9,7 +9,7 @@
 #import "SIApplication.h"
 
 #import "SIWindow.h"
-#import "SDUniversalAccessHelper.h"
+#import "SIUniversalAccessHelper.h"
 
 @interface AMApplicationObservation : NSObject
 @property (nonatomic, strong) NSString *notification;
@@ -40,7 +40,7 @@
 }
 
 + (NSArray *)runningApplications {
-    if ([SDUniversalAccessHelper complainIfNeeded])
+    if ([SIUniversalAccessHelper complainIfNeeded])
         return nil;
 
     NSMutableArray* apps = [NSMutableArray array];
