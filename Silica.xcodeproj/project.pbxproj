@@ -11,6 +11,8 @@
 		40FC6ACD17FA599C00856CE7 /* SIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FC6ACB17FA599C00856CE7 /* SIApplication.m */; };
 		40FC6AD017FA5A1B00856CE7 /* SIAccessibilityElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 40FC6ACE17FA5A1B00856CE7 /* SIAccessibilityElement.h */; };
 		40FC6AD117FA5A1B00856CE7 /* SIAccessibilityElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FC6ACF17FA5A1B00856CE7 /* SIAccessibilityElement.m */; };
+		40FC6AD417FA606A00856CE7 /* NSRunningApplication+Silica.h in Headers */ = {isa = PBXBuildFile; fileRef = 40FC6AD217FA606A00856CE7 /* NSRunningApplication+Silica.h */; };
+		40FC6AD517FA606A00856CE7 /* NSRunningApplication+Silica.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FC6AD317FA606A00856CE7 /* NSRunningApplication+Silica.m */; };
 		942474B917DF67D700BF9B61 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942474B817DF67D700BF9B61 /* Cocoa.framework */; };
 		942474C317DF67D700BF9B61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 942474C117DF67D700BF9B61 /* InfoPlist.strings */; };
 		942474D217DF690700BF9B61 /* SIWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474CE17DF690700BF9B61 /* SIWindow.h */; };
@@ -28,6 +30,8 @@
 		40FC6ACB17FA599C00856CE7 /* SIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIApplication.m; sourceTree = "<group>"; };
 		40FC6ACE17FA5A1B00856CE7 /* SIAccessibilityElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAccessibilityElement.h; sourceTree = "<group>"; };
 		40FC6ACF17FA5A1B00856CE7 /* SIAccessibilityElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIAccessibilityElement.m; sourceTree = "<group>"; };
+		40FC6AD217FA606A00856CE7 /* NSRunningApplication+Silica.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRunningApplication+Silica.h"; sourceTree = "<group>"; };
+		40FC6AD317FA606A00856CE7 /* NSRunningApplication+Silica.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSRunningApplication+Silica.m"; sourceTree = "<group>"; };
 		942474B517DF67D700BF9B61 /* Silica.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Silica.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		942474B817DF67D700BF9B61 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		942474BB17DF67D700BF9B61 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -124,6 +128,8 @@
 		942474E817DF6A3100BF9B61 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				40FC6AD217FA606A00856CE7 /* NSRunningApplication+Silica.h */,
+				40FC6AD317FA606A00856CE7 /* NSRunningApplication+Silica.m */,
 				942474CE17DF690700BF9B61 /* SIWindow.h */,
 				942474CF17DF690700BF9B61 /* SIWindow.m */,
 				942474D017DF690700BF9B61 /* NSScreen+SilicaExtension.h */,
@@ -148,6 +154,7 @@
 				40FC6AD017FA5A1B00856CE7 /* SIAccessibilityElement.h in Headers */,
 				942474D217DF690700BF9B61 /* SIWindow.h in Headers */,
 				942474D417DF690700BF9B61 /* NSScreen+SilicaExtension.h in Headers */,
+				40FC6AD417FA606A00856CE7 /* NSRunningApplication+Silica.h in Headers */,
 				40FC6ACC17FA599C00856CE7 /* SIApplication.h in Headers */,
 				942474E417DF693600BF9B61 /* SIUniversalAccessHelper.h in Headers */,
 			);
@@ -251,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40FC6AD517FA606A00856CE7 /* NSRunningApplication+Silica.m in Sources */,
 				40FC6ACD17FA599C00856CE7 /* SIApplication.m in Sources */,
 				40FC6AD117FA5A1B00856CE7 /* SIAccessibilityElement.m in Sources */,
 				942474D317DF690700BF9B61 /* SIWindow.m in Sources */,
