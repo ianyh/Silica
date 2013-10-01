@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4063AFDA17FB937A00E942E2 /* SISystemWideElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063AFD817FB937A00E942E2 /* SISystemWideElement.h */; };
+		4063AFDB17FB937A00E942E2 /* SISystemWideElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4063AFD917FB937A00E942E2 /* SISystemWideElement.m */; };
 		40FC6ACC17FA599C00856CE7 /* SIApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 40FC6ACA17FA599C00856CE7 /* SIApplication.h */; };
 		40FC6ACD17FA599C00856CE7 /* SIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FC6ACB17FA599C00856CE7 /* SIApplication.m */; };
 		40FC6AD017FA5A1B00856CE7 /* SIAccessibilityElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 40FC6ACE17FA5A1B00856CE7 /* SIAccessibilityElement.h */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4063AFD817FB937A00E942E2 /* SISystemWideElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SISystemWideElement.h; sourceTree = "<group>"; };
+		4063AFD917FB937A00E942E2 /* SISystemWideElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SISystemWideElement.m; sourceTree = "<group>"; };
 		40FC6ACA17FA599C00856CE7 /* SIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIApplication.h; sourceTree = "<group>"; };
 		40FC6ACB17FA599C00856CE7 /* SIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIApplication.m; sourceTree = "<group>"; };
 		40FC6ACE17FA5A1B00856CE7 /* SIAccessibilityElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAccessibilityElement.h; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 		942474E817DF6A3100BF9B61 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4063AFD817FB937A00E942E2 /* SISystemWideElement.h */,
+				4063AFD917FB937A00E942E2 /* SISystemWideElement.m */,
 				40FC6AD217FA606A00856CE7 /* NSRunningApplication+Silica.h */,
 				40FC6AD317FA606A00856CE7 /* NSRunningApplication+Silica.m */,
 				942474CE17DF690700BF9B61 /* SIWindow.h */,
@@ -155,6 +161,7 @@
 				942474D217DF690700BF9B61 /* SIWindow.h in Headers */,
 				942474D417DF690700BF9B61 /* NSScreen+SilicaExtension.h in Headers */,
 				40FC6AD417FA606A00856CE7 /* NSRunningApplication+Silica.h in Headers */,
+				4063AFDA17FB937A00E942E2 /* SISystemWideElement.h in Headers */,
 				40FC6ACC17FA599C00856CE7 /* SIApplication.h in Headers */,
 				942474E417DF693600BF9B61 /* SIUniversalAccessHelper.h in Headers */,
 			);
@@ -258,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4063AFDB17FB937A00E942E2 /* SISystemWideElement.m in Sources */,
 				40FC6AD517FA606A00856CE7 /* NSRunningApplication+Silica.m in Sources */,
 				40FC6ACD17FA599C00856CE7 /* SIApplication.m in Sources */,
 				40FC6AD117FA5A1B00856CE7 /* SIAccessibilityElement.m in Sources */,

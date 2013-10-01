@@ -1,6 +1,6 @@
 //
-//  MyWindow.h
-//  Zephyros
+//  SIWindow.h
+//  Silica
 //
 //  Created by Steven Degutis on 2/28/13.
 //  Copyright (c) 2013 Steven Degutis. All rights reserved.
@@ -12,56 +12,51 @@
 
 @interface SIWindow : SIAccessibilityElement
 
-// getting windows
+#pragma mark Window Accessors
 
-+ (NSArray*) allWindows;
-+ (NSArray*) visibleWindows;
-+ (SIWindow*) focusedWindow;
-- (NSArray*) otherWindowsOnSameScreen;
-- (NSArray*) otherWindowsOnAllScreens;
++ (NSArray *)allWindows;
++ (NSArray *)visibleWindows;
++ (SIWindow *)focusedWindow;
 
+- (NSArray *)otherWindowsOnSameScreen;
+- (NSArray *)otherWindowsOnAllScreens;
+- (NSArray *)windowsToWest;
+- (NSArray *)windowsToEast;
+- (NSArray *)windowsToNorth;
+- (NSArray *)windowsToSouth;
 
-// window position & size
+#pragma mark Window Geometry
 
-- (CGRect) frame;
-- (CGPoint) topLeft;
-- (CGSize) size;
+- (CGRect)frame;
+- (CGPoint)topLeft;
+- (CGSize)size;
 
-- (void) setFrame:(CGRect)frame;
-- (void) setTopLeft:(CGPoint)thePoint;
-- (void) setSize:(CGSize)theSize;
+- (void)setFrame:(CGRect)frame;
+- (void)setTopLeft:(CGPoint)thePoint;
+- (void)setSize:(CGSize)theSize;
 
+#pragma mark Window Properties
 
-- (void) maximize;
-- (void) minimize;
-- (void) unMinimize;
+- (NSString *)title;
+- (BOOL)isWindowMinimized;
+- (BOOL)isNormalWindow;
 
+- (NSScreen *)screen;
+- (SIApplication *)app;
 
-// other
+#pragma mark Window Actions
 
-- (NSScreen*) screen;
-- (SIApplication*) app;
+- (void)maximize;
+- (void)minimize;
+- (void)unMinimize;
 
-- (BOOL) isNormalWindow;
+#pragma mark Window Focus
 
-// focus
+- (BOOL)focusWindow;
 
-- (BOOL) focusWindow;
-
-- (void) focusWindowLeft;
-- (void) focusWindowRight;
-- (void) focusWindowUp;
-- (void) focusWindowDown;
-
-- (NSArray*) windowsToWest;
-- (NSArray*) windowsToEast;
-- (NSArray*) windowsToNorth;
-- (NSArray*) windowsToSouth;
-
-
-// other window properties
-
-- (NSString*) title;
-- (BOOL) isWindowMinimized;
+- (void)focusWindowLeft;
+- (void)focusWindowRight;
+- (void)focusWindowUp;
+- (void)focusWindowDown;
 
 @end
