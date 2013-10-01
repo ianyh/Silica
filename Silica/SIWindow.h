@@ -6,13 +6,11 @@
 //  Copyright (c) 2013 Steven Degutis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "SIAccessibilityElement.h"
 
-#import "SIApp.h"
+@class SIApplication;
 
-@interface SIWindow : NSObject
-
-- (id) initWithElement:(AXUIElementRef)win;
+@interface SIWindow : SIAccessibilityElement
 
 // getting windows
 
@@ -42,7 +40,7 @@
 // other
 
 - (NSScreen*) screen;
-- (SIApp*) app;
+- (SIApplication*) app;
 
 - (BOOL) isNormalWindow;
 

@@ -8,7 +8,7 @@
 
 #import "SIWindow.h"
 
-#import "SIApp.h"
+#import "SIApplication.h"
 
 #import "NSScreen+SilicaExtension.h"
 #import "SDUniversalAccessHelper.h"
@@ -20,18 +20,6 @@
 @end
 
 @implementation SIWindow
-
-- (id) initWithElement:(AXUIElementRef)win {
-    if (self = [super init]) {
-        self.window = CFRetain(win);
-    }
-    return self;
-}
-
-- (void) dealloc {
-    if (self.window)
-        CFRelease(self.window);
-}
 
 - (BOOL) isEqual:(SIWindow*)other {
     return ([self isKindOfClass: [other class]] &&
@@ -48,8 +36,8 @@
     
     NSMutableArray* windows = [NSMutableArray array];
     
-    for (SIApp* app in [SIApp runningApps]) {
-        [windows addObjectsFromArray:[app allWindows]];
+    for (SIApplication* app in [SIApplication runningApplications]) {
+        [windows addObjectsFromArray:[app windows]];
     }
     
     return windows;
@@ -105,8 +93,7 @@
         CFRelease(app);
         
         if (result == kAXErrorSuccess) {
-            SIWindow* window = [[SIWindow alloc] init];
-            window.window = win;
+            SIWindow* window = [[SIWindow alloc] initWithAXElement:win];
             return window;
         }
     }
@@ -240,8 +227,9 @@
         return 0;
 }
 
-- (SIApp*) app {
-    return [[SIApp alloc] initWithPID:[self processIdentifier]];
+- (SIApplication*) app {
+    NSRunningApplication *runningApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.processIdentifier];
+    return [SIApplication applicationWithRunningApplication:runningApplication];
 }
 
 - (id) getWindowProperty:(NSString*)propType withDefaultValue:(id)defaultValue {
