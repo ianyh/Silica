@@ -10,21 +10,21 @@
 
 @implementation NSScreen (SilicaExtension)
 
-- (CGRect) frameIncludingDockAndMenu {
-    NSScreen* primaryScreen = [[NSScreen screens] objectAtIndex:0];
+- (CGRect)frameIncludingDockAndMenu {
+    NSScreen *primaryScreen = [[NSScreen screens] objectAtIndex:0];
     CGRect f = [self frame];
     f.origin.y = NSHeight([primaryScreen frame]) - NSHeight(f) - f.origin.y;
     return f;
 }
 
-- (CGRect) frameWithoutDockOrMenu {
-    NSScreen* primaryScreen = [[NSScreen screens] objectAtIndex:0];
+- (CGRect)frameWithoutDockOrMenu {
+    NSScreen *primaryScreen = [[NSScreen screens] objectAtIndex:0];
     CGRect f = [self visibleFrame];
     f.origin.y = NSHeight([primaryScreen frame]) - NSHeight(f) - f.origin.y;
     return f;
 }
 
-- (BOOL) rotateTo:(int)degrees {
+- (BOOL)rotateTo:(int)degrees {
     int rotation;
     
     if (degrees == 0)
@@ -52,8 +52,8 @@
     return YES;
 }
 
-- (NSScreen*) nextScreen {
-    NSArray* screens = [NSScreen screens];
+- (NSScreen *)nextScreen {
+    NSArray *screens = [NSScreen screens];
     NSUInteger idx = [screens indexOfObject:self];
     
     idx += 1;
@@ -63,8 +63,8 @@
     return [screens objectAtIndex:idx];
 }
 
-- (NSScreen*) previousScreen {
-    NSArray* screens = [NSScreen screens];
+- (NSScreen *)previousScreen {
+    NSArray *screens = [NSScreen screens];
     NSUInteger idx = [screens indexOfObject:self];
     
     idx -= 1;

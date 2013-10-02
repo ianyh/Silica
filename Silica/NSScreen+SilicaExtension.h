@@ -10,12 +10,12 @@
 
 @interface NSScreen (SilicaExtension)
 
-- (CGRect) frameIncludingDockAndMenu;
-- (CGRect) frameWithoutDockOrMenu;
+- (CGRect)frameIncludingDockAndMenu;
+- (CGRect)frameWithoutDockOrMenu;
 
-- (NSScreen*) nextScreen;
-- (NSScreen*) previousScreen;
+- (NSScreen *)nextScreen;
+- (NSScreen *)previousScreen;
 
-- (BOOL) rotateTo:(int)degrees;
+- (BOOL)rotateTo:(int)degrees;
 
 @end
