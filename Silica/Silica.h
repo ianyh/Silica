@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
+#import <IOKit/IOKitLib.h>
 
-#import <Silica/SIWindow.h>
-#import <Silica/SIApp.h>
+#import <Silica/NSRunningApplication+Silica.h>
 #import <Silica/NSScreen+SilicaExtension.h>
+#import <Silica/SIAccessibilityElement.h>
+#import <Silica/SIApplication.h>
+#import <Silica/SISystemWideElement.h>
+#import <Silica/SIUniversalAccessHelper.h>
+#import <Silica/SIWindow.h>
