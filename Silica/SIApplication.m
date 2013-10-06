@@ -24,8 +24,6 @@
 @property (nonatomic, strong) NSMutableDictionary *elementToObservations;
 
 @property (nonatomic, strong) NSMutableArray *cachedWindows;
-
-@property (nonatomic, assign) BOOL floating;
 @end
 
 @implementation SIApplication
@@ -43,10 +41,10 @@
     if ([SIUniversalAccessHelper complainIfNeeded])
         return nil;
 
-    NSMutableArray* apps = [NSMutableArray array];
+    NSMutableArray *apps = [NSMutableArray array];
 
-    for (NSRunningApplication* runningApp in [[NSWorkspace sharedWorkspace] runningApplications]) {
-        SIApplication* app = [SIApplication applicationWithRunningApplication:runningApp];
+    for (NSRunningApplication *runningApp in [[NSWorkspace sharedWorkspace] runningApplications]) {
+        SIApplication *app = [SIApplication applicationWithRunningApplication:runningApp];
         [apps addObject:app];
     }
 
