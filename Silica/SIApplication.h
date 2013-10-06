@@ -1,6 +1,6 @@
 //
-//  AMApplication.h
-//  Amethyst
+//  SIApplication.h
+//  Silica
 //
 //  Created by Ian on 5/16/13.
 //  Copyright (c) 2013 Ian Ynda-Hummel. All rights reserved.
@@ -23,7 +23,7 @@ typedef void (^SIAXNotificationHandler)(SIAccessibilityElement *accessibilityEle
 //
 // runningApplication - A running application in the shared workspace.
 //
-// Returns an AMApplication instance if an accessibility element could be
+// Returns a SIApplication instance if an accessibility element could be
 // constructed from the running application instance. Returns nil otherwise.
 + (instancetype)applicationWithRunningApplication:(NSRunningApplication *)runningApplication;
 

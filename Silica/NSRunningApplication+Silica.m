@@ -1,6 +1,6 @@
 //
 //  NSRunningApplication+Manageable.m
-//  Amethyst
+//  Silica
 //
 //  Created by Ian Ynda-Hummel on 5/24/13.
 //  Copyright (c) 2013 Ian Ynda-Hummel. All rights reserved.
@@ -9,14 +9,6 @@
 #import "NSRunningApplication+Silica.h"
 
 @implementation NSRunningApplication (Silica)
-
-- (BOOL)isManageable {
-    if ([self.bundleIdentifier hasPrefix:@"com.apple.dashboard"]) return NO;
-    if ([self.bundleIdentifier hasPrefix:@"com.apple.loginwindow"]) return NO;
-    if (self.isAgent) return NO;
-
-    return YES;
-}
 
 - (BOOL)isAgent {
     NSURL *bundleInfoPath = [[self.bundleURL URLByAppendingPathComponent:@"Contents"] URLByAppendingPathComponent:@"Info.plist"];

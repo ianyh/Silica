@@ -1,6 +1,6 @@
 //
-//  AMApplication.m
-//  Amethyst
+//  SIApplication.m
+//  Silica
 //
 //  Created by Ian on 5/16/13.
 //  Copyright (c) 2013 Ian Ynda-Hummel. All rights reserved.
@@ -11,12 +11,12 @@
 #import "SIWindow.h"
 #import "SIUniversalAccessHelper.h"
 
-@interface AMApplicationObservation : NSObject
+@interface SIApplicationObservation : NSObject
 @property (nonatomic, strong) NSString *notification;
 @property (nonatomic, copy) SIAXNotificationHandler handler;
 @end
 
-@implementation AMApplicationObservation
+@implementation SIApplicationObservation
 @end
 
 @interface SIApplication ()
@@ -56,7 +56,7 @@
 - (void)dealloc {
     if (_observerRef) {
         for (SIAccessibilityElement *element in self.elementToObservations.allKeys) {
-            for (AMApplicationObservation *observation in self.elementToObservations[element]) {
+            for (SIApplicationObservation *observation in self.elementToObservations[element]) {
                 AXObserverRemoveNotification(_observerRef, element.axElementRef, (__bridge CFStringRef)observation.notification);
             }
         }
@@ -85,7 +85,7 @@ void observerCallback(AXObserverRef observer, AXUIElementRef element, CFStringRe
         self.elementToObservations = [NSMutableDictionary dictionaryWithCapacity:1];
     }
 
-    AMApplicationObservation *observation = [[AMApplicationObservation alloc] init];
+    SIApplicationObservation *observation = [[SIApplicationObservation alloc] init];
     observation.notification = (__bridge NSString *)notification;
     observation.handler = handler;
 
@@ -98,7 +98,7 @@ void observerCallback(AXObserverRef observer, AXUIElementRef element, CFStringRe
 }
 
 - (void)unobserveNotification:(CFStringRef)notification withElement:(SIAccessibilityElement *)accessibilityElement {
-    for (AMApplicationObservation *observation in self.elementToObservations[accessibilityElement]) {
+    for (SIApplicationObservation *observation in self.elementToObservations[accessibilityElement]) {
         AXObserverRemoveNotification(self.observerRef, accessibilityElement.axElementRef, (__bridge CFStringRef)observation.notification);
     }
     [self.elementToObservations removeObjectForKey:accessibilityElement];
