@@ -257,25 +257,35 @@
         switch ([keyCodeString characterAtIndex:keyCodeString.length - 1]) {
             case '1':
                 keyCode = kVK_ANSI_1;
+                break;
             case '2':
                 keyCode = kVK_ANSI_2;
+                break;
             case '3':
                 keyCode = kVK_ANSI_3;
+                break;
             case '4':
                 keyCode = kVK_ANSI_4;
+                break;
             case '5':
                 keyCode = kVK_ANSI_5;
+                break;
             case '6':
                 keyCode = kVK_ANSI_6;
+                break;
             case '7':
                 keyCode = kVK_ANSI_7;
+                break;
             case '8':
                 keyCode = kVK_ANSI_8;
+                break;
             case '9':
                 keyCode = kVK_ANSI_9;
+                break;
             case '0':
             default:
                 keyCode = kVK_ANSI_0;
+                break;
         }
     }
 
