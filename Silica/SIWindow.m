@@ -8,6 +8,7 @@
 
 #import "SIWindow.h"
 
+#import <Carbon/Carbon.h>
 #import "NSScreen+SilicaExtension.h"
 #import "SIApplication.h"
 #import "SISystemWideElement.h"
@@ -193,6 +194,17 @@
     return YES;
 }
 
+- (BOOL)isSheet {
+    return [[self stringForKey:kAXRoleAttribute] isEqualToString:(__bridge NSString *)kAXSheetRole];
+}
+
+- (SIApplication *)app {
+    NSRunningApplication *runningApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.processIdentifier];
+    return [SIApplication applicationWithRunningApplication:runningApplication];
+}
+
+#pragma mark Screen
+
 - (NSScreen *)screen {
     CGRect windowFrame = [self frame];
     
@@ -213,9 +225,93 @@
     return lastScreen;
 }
 
-- (SIApplication *)app {
-    NSRunningApplication *runningApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.processIdentifier];
-    return [SIApplication applicationWithRunningApplication:runningApplication];
+- (void)moveToScreen:(NSScreen *)screen {
+    self.topLeft = screen.frameWithoutDockOrMenu.origin;
+}
+
+#pragma mark Space
+
+- (void)moveToSpace:(NSUInteger)space {
+    if (space > 16) return;
+
+    SIAccessibilityElement *zoomButtonElement = [self elementForKey:kAXZoomButtonAttribute];
+    CGRect zoomButtonFrame = zoomButtonElement.frame;
+    CGRect windowFrame = self.frame;
+
+    CGEventRef defaultEvent = CGEventCreate(NULL);
+    CGPoint startingCursorPoint = CGEventGetLocation(defaultEvent);
+    CGPoint mouseCursorPoint = {
+        .x = (zoomButtonElement ? CGRectGetMaxX(zoomButtonFrame) + 5.0 : windowFrame.origin.x + 5.0),
+        .y = windowFrame.origin.y + 5.0
+    };
+
+    CGEventRef mouseMoveEvent = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, mouseCursorPoint, kCGMouseButtonLeft);
+    CGEventRef mouseDownEvent = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseDown, mouseCursorPoint, kCGMouseButtonLeft);
+    CGEventRef mouseUpEvent = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseUp, mouseCursorPoint, kCGMouseButtonLeft);
+    CGEventRef mouseRestoreEvent = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, startingCursorPoint, kCGMouseButtonLeft);
+
+    CGKeyCode keyCode = 0xFF;
+    NSString *keyCodeString = [NSString stringWithFormat:@"%@", @(space)];
+
+    if (keyCodeString.length > 0) {
+        switch ([keyCodeString characterAtIndex:keyCodeString.length - 1]) {
+            case '1':
+                keyCode = kVK_ANSI_1;
+            case '2':
+                keyCode = kVK_ANSI_2;
+            case '3':
+                keyCode = kVK_ANSI_3;
+            case '4':
+                keyCode = kVK_ANSI_4;
+            case '5':
+                keyCode = kVK_ANSI_5;
+            case '6':
+                keyCode = kVK_ANSI_6;
+            case '7':
+                keyCode = kVK_ANSI_7;
+            case '8':
+                keyCode = kVK_ANSI_8;
+            case '9':
+                keyCode = kVK_ANSI_9;
+            case '0':
+            default:
+                keyCode = kVK_ANSI_0;
+        }
+    }
+
+    CGEventRef keyboardEvent = CGEventCreateKeyboardEvent(NULL, keyCode, true);
+    CGEventRef keyboardEventUp = CGEventCreateKeyboardEvent(NULL, keyCode, false);
+
+    CGEventSetFlags(mouseMoveEvent, 0);
+    CGEventSetFlags(mouseDownEvent, 0);
+    CGEventSetFlags(mouseUpEvent, 0);
+    CGEventSetFlags(keyboardEvent, kCGEventFlagMaskControl);
+    CGEventSetFlags(keyboardEventUp, 0);
+
+    // Move the mouse into place at the window's toolbar
+    CGEventPost(kCGHIDEventTap, mouseMoveEvent);
+    // Mouse down to grab hold of the window
+    CGEventPost(kCGHIDEventTap, mouseDownEvent);
+    // Send the shortcut command to get Mission Control to switch spaces from under the window.
+    CGEventPost(kCGHIDEventTap, keyboardEvent);
+    CGEventPost(kCGHIDEventTap, keyboardEventUp);
+
+    double delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        // Let go of the window.
+        CGEventPost(kCGHIDEventTap, mouseUpEvent);
+        // Move the cursor back to its previous position.
+        CGEventPost(kCGHIDEventTap, mouseRestoreEvent);
+        CFRelease(mouseUpEvent);
+        CFRelease(mouseRestoreEvent);
+    });
+
+    CFRelease(defaultEvent);
+    CFRelease(mouseMoveEvent);
+    CFRelease(mouseDownEvent);
+    CFRelease(keyboardEvent);
+    CFRelease(keyboardEventUp);
 }
 
 #pragma mark Window Actions

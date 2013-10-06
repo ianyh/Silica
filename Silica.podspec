@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.source        = { :git => "https://github.com/SiO2/Silica.git", :tag => '0.0.2' }
   s.source_files  = 'Silica', 'Silica/**/*.{h,m}'
   s.exclude_files = 'Silica/Exclude'
-  s.frameworks    = 'AppKit', 'IOKit'
+  s.frameworks    = 'AppKit', 'IOKit', 'Carbon'
   s.requires_arc  = true
   s.dependency 'libextobjc'
 end

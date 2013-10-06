@@ -40,9 +40,18 @@
 - (NSString *)title;
 - (BOOL)isWindowMinimized;
 - (BOOL)isNormalWindow;
+- (BOOL)isSheet;
+
+- (SIApplication *)app;
+
+#pragma mark Screen
 
 - (NSScreen *)screen;
-- (SIApplication *)app;
+- (void)moveToScreen:(NSScreen *)screen;
+
+#pragma mark Space
+
+- (void)moveToSpace:(NSUInteger)space;
 
 #pragma mark Window Actions
 
