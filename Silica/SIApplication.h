@@ -2,9 +2,6 @@
 //  SIApplication.h
 //  Silica
 //
-//  Created by Ian on 5/16/13.
-//  Copyright (c) 2013 Ian Ynda-Hummel. All rights reserved.
-//
 
 #import "SIAccessibilityElement.h"
 

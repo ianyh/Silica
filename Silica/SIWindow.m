@@ -1,9 +1,6 @@
 //
-//  MyWindow.m
-//  Zephyros
-//
-//  Created by Steven Degutis on 2/28/13.
-//  Copyright (c) 2013 Steven Degutis. All rights reserved.
+//  SIWindow.m
+//  Silica
 //
 
 #import "SIWindow.h"
@@ -93,79 +90,6 @@
                      shouldDisregardFn:^BOOL(double deltaX, double deltaY) { return (deltaY <= 0); }] valueForKeyPath:@"win"];
 }
 
-#pragma mark Window Geometry
-
-- (CGRect)frame {
-    CGRect r;
-    r.origin = [self origin];
-    r.size = [self size];
-    return r;
-}
-
-- (CGPoint)origin {
-    CFTypeRef positionStorage;
-    AXError result = AXUIElementCopyAttributeValue(self.axElementRef, (CFStringRef)NSAccessibilityPositionAttribute, &positionStorage);
-    
-    CGPoint topLeft;
-    if (result == kAXErrorSuccess) {
-        if (!AXValueGetValue(positionStorage, kAXValueCGPointType, (void *)&topLeft)) {
-            NSLog(@"could not decode topLeft");
-            topLeft = CGPointZero;
-        }
-    } else {
-        NSLog(@"could not get window topLeft");
-        topLeft = CGPointZero;
-    }
-    
-    if (positionStorage) {
-        CFRelease(positionStorage);
-    }
-    
-    return topLeft;
-}
-
-- (CGSize)size {
-    CFTypeRef sizeStorage;
-    AXError result = AXUIElementCopyAttributeValue(self.axElementRef, (CFStringRef)NSAccessibilitySizeAttribute, &sizeStorage);
-    
-    CGSize size;
-    if (result == kAXErrorSuccess) {
-        if (!AXValueGetValue(sizeStorage, kAXValueCGSizeType, (void *)&size)) {
-            NSLog(@"could not decode topLeft");
-            size = CGSizeZero;
-        }
-    } else {
-        NSLog(@"could not get window size");
-        size = CGSizeZero;
-    }
-    
-    if (sizeStorage) {
-        CFRelease(sizeStorage);
-    }
-    
-    return size;
-}
-
-- (void)setFrame:(CGRect)frame {
-    [self setSize:frame.size];
-    [self setOrigin:frame.origin];
-    [self setSize:frame.size];
-}
-
-- (void)setOrigin:(CGPoint)thePoint {
-    CFTypeRef positionStorage = (CFTypeRef)(AXValueCreate(kAXValueCGPointType, (const void *)&thePoint));
-    AXUIElementSetAttributeValue(self.axElementRef, (CFStringRef)NSAccessibilityPositionAttribute, positionStorage);
-    if (positionStorage)
-        CFRelease(positionStorage);
-}
-
-- (void)setSize:(CGSize)theSize {
-    CFTypeRef sizeStorage = (CFTypeRef)(AXValueCreate(kAXValueCGSizeType, (const void *)&theSize));
-    AXUIElementSetAttributeValue(self.axElementRef, (CFStringRef)NSAccessibilitySizeAttribute, sizeStorage);
-    if (sizeStorage)
-        CFRelease(sizeStorage);
-}
-
 #pragma mark Window Properties
 
 - (NSString *)title {
@@ -252,7 +176,7 @@
 }
 
 - (void)moveToScreen:(NSScreen *)screen {
-    self.origin = screen.frameWithoutDockOrMenu.origin;
+    self.position = screen.frameWithoutDockOrMenu.origin;
 }
 
 #pragma mark Space
