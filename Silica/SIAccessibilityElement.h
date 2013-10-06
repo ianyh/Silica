@@ -8,99 +8,124 @@
 
 #import <Foundation/Foundation.h>
 
-// Objective-C wrapper around a C-level accessibility object.
+/**
+ *  Object encapsulating an accessibility element. An accessibility element is anything from a button in a window to a running application.
+ */
 @interface SIAccessibilityElement : NSObject <NSCopying>
+
+/**
+ *  The C-level accessibility element.
+ *
+ *  This is exposed primarily for the purposes of subclassing.
+ */
 @property (nonatomic, assign, readonly) AXUIElementRef axElementRef;
 
-// Default init method deprecated for compile-time checking of using the correct
-// initializer.
+/**
+ *  Default init method deprecated for compile-time checking of using the correct initializer.
+ *
+ *  @return Always returns nil.
+ */
 - (id)init DEPRECATED_ATTRIBUTE;
 
-// Initializes the receiver as a wrapper around the supplied accessibility
-// reference. This is the designated initializer of this class.
-//
-// axElementRef - A C-level AXUIElementRef object that the receiver is meant to
-//                be a wrapper around.
-//
-// Should always return a valid object unless something particularly horrible
-// happens.
+/**
+ *  Initializes the receiver as a wrapper around the supplied accessibility reference.
+ *
+ *  This is the designated initializer of this class.
+ *
+ *  @param axElementRef The accessibility element that is being encapsulated. Must not be nil.
+ *
+ *  @return A SIAccessibilityElement instance encapsulating the supplied AXUIElement.
+ */
 - (id)initWithAXElement:(AXUIElementRef)axElementRef;
 
-// Returns YES if the accessibility element's size can be modified and NO
-// otherwise.
+/**
+ *  Returns a BOOL indicating whether or not the element can be resized.
+ *
+ *  @return YES if the element can be resized and NO otherwise.
+ */
 - (BOOL)isResizable;
 
-// Returns YES if the accessibility element's position can be modified and NO
-// otherwise.
+/**
+ *  Returns a BOOL indicating whether or not the element can be moved.
+ *
+ *  @return YES if the element can be resized and NO otherwise.
+ */
 - (BOOL)isMovable;
 
-// Returns the string value of the attribute for the given key.
-//
-// accessibilityValueKey - The key of the attribute to be accessed.
-//
-// Returns the string value of the attribute if the attribute exists and is a
-// string. Returns nil otherwise.
+/**
+ *  Returns the string value corresponding to the supplied key.
+ *
+ *  @param accessibilityValueKey The accessibility key to get the value from.
+ *
+ *  @return The string value corresponding to the supplied key. The return value is nil if the attribute does not exist or if the attribute is not a string.
+ */
 - (NSString *)stringForKey:(CFStringRef)accessibilityValueKey;
 
-// Returns the number value of the attribute for the given key.
-//
-// accessibilityValueKey - The key of the attribute to be accessed.
-//
-// Returns the number value of the attribute if the attribute exists and is a
-// number or boolean. Returns nil otherwise.
+/**
+ *  Returns the number value corresponding to the supplied key.
+ *
+ *  @param accessibilityValueKey The accessibility key to get the value from.
+ *
+ *  @return The number value corresponding to the supplied key. The return value is nil if the attribute does not exist or if the attribute is not a number.
+ */
 - (NSNumber *)numberForKey:(CFStringRef)accessibilityValueKey;
 
-// Returns the array value of the attribute for the given key.
-//
-// accessibilityValueKey - The key of the attribute to be accessed.
-//
-// Returns the array value of the attribute if the attribute exists and is an
-// array. Returns nil otherwise.
+/**
+ *  Returns the array value corresponding to the supplied key.
+ *
+ *  @param accessibilityValueKey The accessibility key to get the value from.
+ *
+ *  @return The array value corresponding to the supplied key. The return value is nil if the attribute does not exist or if the attribute is not an array.
+ */
 - (NSArray *)arrayForKey:(CFStringRef)accessibilityValueKey;
 
-// Returns the accessibility element for the given key.
-//
-// accessibilityValueKey - The key of the attribute to be accessed.
-//
-// Returns the accessibility element for the attribute if the attribute exists
-// and is an accessibility element. Returns nil otherwise.
+/**
+ *  Returns the accessibility element corresponding to the supplied key.
+ *
+ *  @param accessibilityValueKey The accessibility key to get the value from.
+ *
+ *  @return The accessibility element corresponding to the supplied key. The return value is nil if the attribute does not exist or if the attribute is not an accessibility element.
+ */
 - (SIAccessibilityElement *)elementForKey:(CFStringRef)accessibilityValueKey;
 
-// Returns the frame of the accessibility element if it exists. Returns
-// CGRectNull otherwise.
+/**
+ *  Returns the frame of the accessibility element.
+ *
+ *  @return The frame of the accessibility element or CGRectNull if the element has no frame.
+ */
 - (CGRect)frame;
 
-// Updates the frame of the accessibility element.
-//
-// frame - The frame in adjusted screen coordinates to set the accessibility
-//         element to.
-//
-// Updates the frame of the accessibility element to match the input frame as
-// closely as possible given known parameters.
-//
-// If the frame is smaller than the most up to date minimum size the frame is
-// expanded to meet the minimum size.
-//
-// The frame's size may be ignored if the size is not appreciably different from
-// the current size.
+/**
+ *  Updates the frame of the accessibility element.
+ *
+ *  Updates the frame of the accessibility element to match the input frame as closely as possible given known parameters.
+ *
+ *  The frame's size may be ignored if the size is not appreciably different from the current size.
+ *
+ *  @param frame The frame to move the element to.
+ */
 - (void)setFrame:(CGRect)frame;
 
-// Updates the position of the accessibility element.
-//
-// position - The point in adjusted screen coordinates to move the accessibility
-//            element to.
+/**
+ *  Updates the position of the accessibility element.
+ *
+ *  @param position The point to move the accessibility element to.
+ */
 - (void)setPosition:(CGPoint)position;
 
-// Updates the size of the accessibility element.
-//
-// size - The size to change the accessibility element to.
-//
-// There are cases in which this method may fail. Accessibility seems to fail
-// under a variety of conditions (e.g., increasing height while decreasing
-// width). Callers should generally avoid calling this method and call setFrame:
-// instead.
+/**
+ *  Updates the size of the accessibility element.
+ *
+ *  @warning There are cases in which this method may fail. Accessibility seems to fail under a variety of conditions (e.g., increasing height while decreasing width). Callers should generally avoid calling this method and call setFrame: instead.
+ *
+ *  @param size The size to fit the accessibility element to.
+ */
 - (void)setSize:(CGSize)size;
 
-// Returns the pid of the process that owns the accessibility element.
+/**
+ *  Returns the pid of the process that owns the accessibility element.
+ *
+ *  @return The pid of the process that owns the accessibility element.
+ */
 - (pid_t)processIdentifier;
 @end
