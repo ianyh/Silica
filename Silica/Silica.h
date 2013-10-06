@@ -11,7 +11,7 @@
 #import <IOKit/IOKitLib.h>
 
 #import <Silica/NSRunningApplication+Silica.h>
-#import <Silica/NSScreen+SilicaExtension.h>
+#import <Silica/NSScreen+Silica.h>
 #import <Silica/SIAccessibilityElement.h>
 #import <Silica/SIApplication.h>
 #import <Silica/SISystemWideElement.h>

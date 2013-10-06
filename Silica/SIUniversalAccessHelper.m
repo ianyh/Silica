@@ -1,6 +1,6 @@
 //
-//  MyUniversalAccessHelper.m
-//  Zephyros
+//  SIUniversalAccessHelper.m
+//  Silica
 //
 //  Created by Steven Degutis on 3/1/13.
 //  Copyright (c) 2013 Steven Degutis. All rights reserved.
@@ -10,13 +10,17 @@
 
 @implementation SIUniversalAccessHelper
 
-+ (BOOL) complainIfNeeded {
-    Boolean enabled = AXAPIEnabled();
-    
-    if (!enabled) {
++ (BOOL)accessibilityEnabled {
+    return AXAPIEnabled();
+}
+
++ (void)complainIfNeeded {
+    if (!self.accessibilityEnabled) {
         [NSApp activateIgnoringOtherApps:YES];
-        
-        NSInteger result = NSRunAlertPanel(@"Zephyros Requires Universal Access",
+
+        NSString *applicationName = NSBundle.mainBundle.infoDictionary[(__bridge NSString *)kCFBundleNameKey];
+        NSString *alertTitle = [NSString stringWithFormat:@"%@ Requires Universal Access", applicationName];
+        NSInteger result = NSRunAlertPanel(alertTitle,
                                            @"For Zephyros to function properly, access for assistive devices must be enabled first.\n\n"
                                            @"To enable this feature, click \"Enable access for assistive devices\" in the Universal Access pane of System Preferences.",
                                            @"Open Universal Access",
@@ -28,11 +32,7 @@
             NSAppleScript *a = [[NSAppleScript alloc] initWithSource:src];
             [a executeAndReturnError:nil];
         }
-        
-        return YES;
     }
-    
-    return NO;
 }
 
 @end

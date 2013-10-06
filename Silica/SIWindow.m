@@ -9,7 +9,7 @@
 #import "SIWindow.h"
 
 #import <Carbon/Carbon.h>
-#import "NSScreen+SilicaExtension.h"
+#import "NSScreen+Silica.h"
 #import "SIApplication.h"
 #import "SISystemWideElement.h"
 #import "SIUniversalAccessHelper.h"
@@ -19,7 +19,7 @@
 #pragma mark Window Accessors
 
 + (NSArray *)allWindows {
-    if ([SIUniversalAccessHelper complainIfNeeded]) return nil;
+    if (![SIUniversalAccessHelper accessibilityEnabled]) return nil;
     
     NSMutableArray *windows = [NSMutableArray array];
     
@@ -31,8 +31,7 @@
 }
 
 + (NSArray *)visibleWindows {
-    if ([SIUniversalAccessHelper complainIfNeeded])
-        return nil;
+    if (![SIUniversalAccessHelper accessibilityEnabled]) return nil;
 
     return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(SIWindow *win, NSDictionary *bindings) {
         return ![[win app] isHidden]
@@ -42,8 +41,7 @@
 }
 
 + (SIWindow *)focusedWindow {
-    if ([SIUniversalAccessHelper complainIfNeeded])
-        return nil;
+    if (![SIUniversalAccessHelper accessibilityEnabled]) return nil;
 
     CFTypeRef app;
     AXUIElementCopyAttributeValue([SISystemWideElement systemWideElement].axElementRef, kAXFocusedApplicationAttribute, &app);
