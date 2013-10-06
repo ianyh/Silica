@@ -28,11 +28,11 @@
 #pragma mark Window Geometry
 
 - (CGRect)frame;
-- (CGPoint)topLeft;
+- (CGPoint)origin;
 - (CGSize)size;
 
 - (void)setFrame:(CGRect)frame;
-- (void)setTopLeft:(CGPoint)thePoint;
+- (void)setOrigin:(CGPoint)thePoint;
 - (void)setSize:(CGSize)theSize;
 
 #pragma mark Window Properties
@@ -41,6 +41,7 @@
 - (BOOL)isWindowMinimized;
 - (BOOL)isNormalWindow;
 - (BOOL)isSheet;
+- (BOOL)isActive;
 
 - (SIApplication *)app;
 

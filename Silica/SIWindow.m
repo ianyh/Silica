@@ -99,12 +99,12 @@
 
 - (CGRect)frame {
     CGRect r;
-    r.origin = [self topLeft];
+    r.origin = [self origin];
     r.size = [self size];
     return r;
 }
 
-- (CGPoint)topLeft {
+- (CGPoint)origin {
     CFTypeRef positionStorage;
     AXError result = AXUIElementCopyAttributeValue(self.axElementRef, (CFStringRef)NSAccessibilityPositionAttribute, &positionStorage);
     
@@ -150,11 +150,11 @@
 
 - (void)setFrame:(CGRect)frame {
     [self setSize:frame.size];
-    [self setTopLeft:frame.origin];
+    [self setOrigin:frame.origin];
     [self setSize:frame.size];
 }
 
-- (void)setTopLeft:(CGPoint)thePoint {
+- (void)setOrigin:(CGPoint)thePoint {
     CFTypeRef positionStorage = (CFTypeRef)(AXValueCreate(kAXValueCGPointType, (const void *)&thePoint));
     AXUIElementSetAttributeValue(self.axElementRef, (CFStringRef)NSAccessibilityPositionAttribute, positionStorage);
     if (positionStorage)
@@ -198,6 +198,34 @@
     return [[self stringForKey:kAXRoleAttribute] isEqualToString:(__bridge NSString *)kAXSheetRole];
 }
 
+- (BOOL)isActive {
+    if ([[self numberForKey:kAXHiddenAttribute] boolValue]) return NO;
+    if ([[self numberForKey:kAXMinimizedAttribute] boolValue]) return NO;
+
+    CFArrayRef windowDescriptions = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
+    pid_t processIdentifier = self.processIdentifier;
+    BOOL isActive = NO;
+    for (NSDictionary *dictionary in (__bridge NSArray *)windowDescriptions) {
+        pid_t windowOwnerProcessIdentifier = [dictionary[(__bridge NSString *)kCGWindowOwnerPID] intValue];
+        if (windowOwnerProcessIdentifier != processIdentifier) continue;
+
+        CGRect windowFrame;
+        NSDictionary *boundsDictionary = dictionary[(__bridge NSString *)kCGWindowBounds];
+        CGRectMakeWithDictionaryRepresentation((__bridge CFDictionaryRef)boundsDictionary, &windowFrame);
+        if (!CGRectEqualToRect(windowFrame, self.frame)) continue;
+
+        NSString *windowTitle = dictionary[(__bridge NSString *)kCGWindowName];
+        if (![windowTitle isEqualToString:[self stringForKey:kAXTitleAttribute]]) continue;
+
+        isActive = YES;
+        break;
+    }
+
+    CFRelease(windowDescriptions);
+    
+    return isActive;
+}
+
 - (SIApplication *)app {
     NSRunningApplication *runningApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.processIdentifier];
     return [SIApplication applicationWithRunningApplication:runningApplication];
@@ -226,7 +254,7 @@
 }
 
 - (void)moveToScreen:(NSScreen *)screen {
-    self.topLeft = screen.frameWithoutDockOrMenu.origin;
+    self.origin = screen.frameWithoutDockOrMenu.origin;
 }
 
 #pragma mark Space
