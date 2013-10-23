@@ -16,7 +16,7 @@
 }
 
 + (void)complainIfNeeded {
-    if (!self.accessibilityEnabled) {
+    if (!self.isAccessibilityTrusted) {
         [NSApp activateIgnoringOtherApps:YES];
 
         NSString *applicationName = NSBundle.mainBundle.infoDictionary[(__bridge NSString *)kCFBundleNameKey];
