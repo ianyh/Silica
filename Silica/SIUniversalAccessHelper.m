@@ -7,6 +7,10 @@
 
 @implementation SIUniversalAccessHelper
 
++ (BOOL)isAccessibilityTrusted {
+    return AXIsProcessTrustedWithOptions(NULL);
+}
+
 + (BOOL)accessibilityEnabled {
     return AXAPIEnabled();
 }

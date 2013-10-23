@@ -35,7 +35,7 @@
 }
 
 + (NSArray *)runningApplications {
-    if (![SIUniversalAccessHelper accessibilityEnabled])
+    if (![SIUniversalAccessHelper isAccessibilityTrusted])
         return nil;
 
     NSMutableArray *apps = [NSMutableArray array];

@@ -16,7 +16,7 @@
 #pragma mark Window Accessors
 
 + (NSArray *)allWindows {
-    if (![SIUniversalAccessHelper accessibilityEnabled]) return nil;
+    if (![SIUniversalAccessHelper isAccessibilityTrusted]) return nil;
     
     NSMutableArray *windows = [NSMutableArray array];
     
@@ -28,7 +28,7 @@
 }
 
 + (NSArray *)visibleWindows {
-    if (![SIUniversalAccessHelper accessibilityEnabled]) return nil;
+    if (![SIUniversalAccessHelper isAccessibilityTrusted]) return nil;
 
     return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(SIWindow *win, NSDictionary *bindings) {
         return ![[win app] isHidden]
@@ -38,7 +38,7 @@
 }
 
 + (SIWindow *)focusedWindow {
-    if (![SIUniversalAccessHelper accessibilityEnabled]) return nil;
+    if (![SIUniversalAccessHelper isAccessibilityTrusted]) return nil;
 
     CFTypeRef app;
     AXUIElementCopyAttributeValue([SISystemWideElement systemWideElement].axElementRef, kAXFocusedApplicationAttribute, &app);
@@ -305,16 +305,24 @@
 #pragma mark Window Focus
 
 - (BOOL)focusWindow {
-    AXError changedMainWindowResult = AXUIElementSetAttributeValue(self.axElementRef, (CFStringRef)NSAccessibilityMainAttribute, kCFBooleanTrue);
-    if (changedMainWindowResult != kAXErrorSuccess) {
-        NSLog(@"ERROR: Could not change focus to window");
+    NSRunningApplication *runningApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.processIdentifier];
+    BOOL success = [runningApplication activateWithOptions:NSApplicationActivateAllWindows | NSApplicationActivateIgnoringOtherApps];
+    if (!success) {
         return NO;
     }
 
-    ProcessSerialNumber psn;
-    GetProcessForPID([self processIdentifier], &psn);
-    OSStatus focusAppResult = SetFrontProcessWithOptions(&psn, kSetFrontProcessFrontWindowOnly);
-    return (focusAppResult == 0);
+    AXError error;
+    error = AXUIElementPerformAction(self.axElementRef, kAXRaiseAction);
+    if (error != kAXErrorSuccess) {
+        return NO;
+    }
+
+    error = AXUIElementSetAttributeValue(self.axElementRef, (CFStringRef)NSAccessibilityMainAttribute, kCFBooleanTrue);
+    if (error != kAXErrorSuccess) {
+        return NO;
+    }
+
+    return YES;
 }
 
 NSPoint SIMidpoint(NSRect r) {
