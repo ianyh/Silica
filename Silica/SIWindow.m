@@ -311,13 +311,7 @@
         return NO;
     }
 
-    AXError error;
-    error = AXUIElementPerformAction(self.axElementRef, kAXRaiseAction);
-    if (error != kAXErrorSuccess) {
-        return NO;
-    }
-
-    error = AXUIElementSetAttributeValue(self.axElementRef, (CFStringRef)NSAccessibilityMainAttribute, kCFBooleanTrue);
+    AXError error = AXUIElementSetAttributeValue(self.axElementRef, (CFStringRef)NSAccessibilityMainAttribute, kCFBooleanTrue);
     if (error != kAXErrorSuccess) {
         return NO;
     }
