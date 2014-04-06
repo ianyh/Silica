@@ -40,21 +40,29 @@
 + (SIWindow *)focusedWindow {
     if (![SIUniversalAccessHelper isAccessibilityTrusted]) return nil;
 
-    CFTypeRef app;
-    AXUIElementCopyAttributeValue([SISystemWideElement systemWideElement].axElementRef, kAXFocusedApplicationAttribute, &app);
+    CFTypeRef applicationRef;
+    AXUIElementCopyAttributeValue([SISystemWideElement systemWideElement].axElementRef, kAXFocusedApplicationAttribute, &applicationRef);
 
-    if (app) {
-        CFTypeRef win;
-        AXError result = AXUIElementCopyAttributeValue(app, (CFStringRef)NSAccessibilityFocusedWindowAttribute, &win);
+    if (applicationRef) {
+        CFTypeRef windowRef;
+        AXError result = AXUIElementCopyAttributeValue(applicationRef, (CFStringRef)NSAccessibilityFocusedWindowAttribute, &windowRef);
 
-        CFRelease(app);
+        CFRelease(applicationRef);
 
         if (result == kAXErrorSuccess) {
-            SIWindow *window = [[SIWindow alloc] initWithAXElement:win];
+            SIWindow *window = [[SIWindow alloc] initWithAXElement:windowRef];
+
+            if ([window isSheet]) {
+                SIAccessibilityElement *parent = [window elementForKey:kAXParentAttribute];
+                if (parent) {
+                    return [[SIWindow alloc] initWithAXElement:parent.axElementRef];
+                }
+            }
+
             return window;
         }
     }
-
+    
     return nil;
 }
 
