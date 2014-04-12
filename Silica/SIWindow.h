@@ -123,6 +123,13 @@
 - (BOOL)isActive;
 
 /**
+ *  Returns a BOOL indicating whether or not the window is fullscreen.
+ *
+ *  @return YES if the window is fullscreen and NO otherwise.
+ */
+- (BOOL)isFullScreen;
+
+/**
  *  Returns the application that owns the window.
  *
  *  @return A SIApplication instance for the application that owns the window.
