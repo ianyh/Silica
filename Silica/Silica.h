@@ -10,6 +10,7 @@
 #import <AppKit/AppKit.h>
 #import <IOKit/IOKitLib.h>
 
+#import <Silica/CGSSpaces.h>
 #import <Silica/NSRunningApplication+Silica.h>
 #import <Silica/NSScreen+Silica.h>
 #import <Silica/SIAccessibilityElement.h>
