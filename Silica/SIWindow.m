@@ -131,26 +131,23 @@
 - (BOOL)isActive {
     if ([[self numberForKey:kAXHiddenAttribute] boolValue]) return NO;
     if ([[self numberForKey:kAXMinimizedAttribute] boolValue]) return NO;
-
+    
+    CGWindowID windowID;
+    AXError error = _AXUIElementGetWindow(self.axElementRef, &windowID);
+    if (error != kAXErrorSuccess) {
+        return NO;
+    }
+    
     CFArrayRef windowDescriptions = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
-    pid_t processIdentifier = self.processIdentifier;
     BOOL isActive = NO;
     for (NSDictionary *dictionary in (__bridge NSArray *)windowDescriptions) {
-        pid_t windowOwnerProcessIdentifier = [dictionary[(__bridge NSString *)kCGWindowOwnerPID] intValue];
-        if (windowOwnerProcessIdentifier != processIdentifier) continue;
-
-        CGRect windowFrame;
-        NSDictionary *boundsDictionary = dictionary[(__bridge NSString *)kCGWindowBounds];
-        CGRectMakeWithDictionaryRepresentation((__bridge CFDictionaryRef)boundsDictionary, &windowFrame);
-        if (!CGRectEqualToRect(windowFrame, self.frame)) continue;
-
-        NSString *windowTitle = dictionary[(__bridge NSString *)kCGWindowName];
-        if (![windowTitle isEqualToString:[self stringForKey:kAXTitleAttribute]]) continue;
-
-        isActive = YES;
-        break;
+        CGWindowID otherWindowID = [dictionary[(__bridge NSString *)kCGWindowNumber] intValue];
+        if (otherWindowID == windowID) {
+            isActive = YES;
+            break;
+        }
     }
-
+    
     CFRelease(windowDescriptions);
     
     return isActive;

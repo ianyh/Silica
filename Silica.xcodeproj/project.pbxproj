@@ -10,6 +10,7 @@
 		404B0FFA1800EBE300309019 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404B0FF91800EBE300309019 /* Carbon.framework */; };
 		4063AFDA17FB937A00E942E2 /* SISystemWideElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063AFD817FB937A00E942E2 /* SISystemWideElement.h */; };
 		4063AFDB17FB937A00E942E2 /* SISystemWideElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4063AFD917FB937A00E942E2 /* SISystemWideElement.m */; };
+		40DF250819ABF7660069CEE6 /* CGSSpaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 40DF250719ABF7660069CEE6 /* CGSSpaces.h */; };
 		40FC6ACC17FA599C00856CE7 /* SIApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 40FC6ACA17FA599C00856CE7 /* SIApplication.h */; };
 		40FC6ACD17FA599C00856CE7 /* SIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FC6ACB17FA599C00856CE7 /* SIApplication.m */; };
 		40FC6AD017FA5A1B00856CE7 /* SIAccessibilityElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 40FC6ACE17FA5A1B00856CE7 /* SIAccessibilityElement.h */; };
@@ -25,13 +26,13 @@
 		942474E417DF693600BF9B61 /* SIUniversalAccessHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474DE17DF693600BF9B61 /* SIUniversalAccessHelper.h */; };
 		942474E517DF693600BF9B61 /* SIUniversalAccessHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474DF17DF693600BF9B61 /* SIUniversalAccessHelper.m */; };
 		942474E717DF695A00BF9B61 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942474E617DF695A00BF9B61 /* IOKit.framework */; };
-		B28B89F4B76A4823818159F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9247E988D3D43269A89E5D3 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		404B0FF91800EBE300309019 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		4063AFD817FB937A00E942E2 /* SISystemWideElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SISystemWideElement.h; sourceTree = "<group>"; };
 		4063AFD917FB937A00E942E2 /* SISystemWideElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SISystemWideElement.m; sourceTree = "<group>"; };
+		40DF250719ABF7660069CEE6 /* CGSSpaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSSpaces.h; sourceTree = "<group>"; };
 		40FC6ACA17FA599C00856CE7 /* SIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIApplication.h; sourceTree = "<group>"; };
 		40FC6ACB17FA599C00856CE7 /* SIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIApplication.m; sourceTree = "<group>"; };
 		40FC6ACE17FA5A1B00856CE7 /* SIAccessibilityElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAccessibilityElement.h; sourceTree = "<group>"; };
@@ -54,7 +55,6 @@
 		942474DE17DF693600BF9B61 /* SIUniversalAccessHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUniversalAccessHelper.h; sourceTree = "<group>"; };
 		942474DF17DF693600BF9B61 /* SIUniversalAccessHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUniversalAccessHelper.m; sourceTree = "<group>"; };
 		942474E617DF695A00BF9B61 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		A44AE30DF69640C8AF2384AE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B9247E988D3D43269A89E5D3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -66,7 +66,6 @@
 				404B0FFA1800EBE300309019 /* Carbon.framework in Frameworks */,
 				942474E717DF695A00BF9B61 /* IOKit.framework in Frameworks */,
 				942474B917DF67D700BF9B61 /* Cocoa.framework in Frameworks */,
-				B28B89F4B76A4823818159F4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,7 +78,6 @@
 				942474BE17DF67D700BF9B61 /* Silica */,
 				942474B717DF67D700BF9B61 /* Frameworks */,
 				942474B617DF67D700BF9B61 /* Products */,
-				A44AE30DF69640C8AF2384AE /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,6 +114,7 @@
 		942474BE17DF67D700BF9B61 /* Silica */ = {
 			isa = PBXGroup;
 			children = (
+				40DF250719ABF7660069CEE6 /* CGSSpaces.h */,
 				942474C517DF67D700BF9B61 /* Silica.h */,
 				942474E817DF6A3100BF9B61 /* Classes */,
 				942474BF17DF67D700BF9B61 /* Supporting Files */,
@@ -166,6 +165,7 @@
 				942474D417DF690700BF9B61 /* NSScreen+Silica.h in Headers */,
 				40FC6AD417FA606A00856CE7 /* NSRunningApplication+Silica.h in Headers */,
 				4063AFDA17FB937A00E942E2 /* SISystemWideElement.h in Headers */,
+				40DF250819ABF7660069CEE6 /* CGSSpaces.h in Headers */,
 				40FC6ACC17FA599C00856CE7 /* SIApplication.h in Headers */,
 				942474E417DF693600BF9B61 /* SIUniversalAccessHelper.h in Headers */,
 			);
@@ -178,12 +178,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 942474CA17DF67D700BF9B61 /* Build configuration list for PBXNativeTarget "Silica" */;
 			buildPhases = (
-				78A62875419140CD9DD4CD5F /* Check Pods Manifest.lock */,
 				942474B017DF67D700BF9B61 /* Sources */,
 				942474B117DF67D700BF9B61 /* Frameworks */,
 				942474B217DF67D700BF9B61 /* Headers */,
 				942474B317DF67D700BF9B61 /* Resources */,
-				0D05EA11D99242D5B4DEEAC8 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -230,39 +228,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0D05EA11D99242D5B4DEEAC8 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		78A62875419140CD9DD4CD5F /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		942474B017DF67D700BF9B61 /* Sources */ = {
@@ -354,7 +319,6 @@
 		};
 		942474CB17DF67D700BF9B61 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A44AE30DF69640C8AF2384AE /* Pods.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -370,7 +334,6 @@
 		};
 		942474CC17DF67D700BF9B61 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A44AE30DF69640C8AF2384AE /* Pods.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
