@@ -314,12 +314,6 @@
 #pragma mark Window Focus
 
 - (BOOL)focusWindow {
-    NSRunningApplication *runningApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.processIdentifier];
-    BOOL success = [runningApplication activateWithOptions:NSApplicationActivateAllWindows | NSApplicationActivateIgnoringOtherApps];
-    if (!success) {
-        return NO;
-    }
-
     AXError error = AXUIElementSetAttributeValue(self.axElementRef, (CFStringRef)NSAccessibilityMainAttribute, kCFBooleanTrue);
     if (error != kAXErrorSuccess) {
         return NO;
