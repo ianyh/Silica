@@ -153,10 +153,6 @@
     return isActive;
 }
 
-- (BOOL)isFullScreen {
-    return ![self elementForKey:kAXFullScreenButtonAttribute];
-}
-
 - (SIApplication *)app {
     NSRunningApplication *runningApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.processIdentifier];
     return [SIApplication applicationWithRunningApplication:runningApplication];

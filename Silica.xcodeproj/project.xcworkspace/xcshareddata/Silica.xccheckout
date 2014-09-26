@@ -10,29 +10,29 @@
 	<string>Silica</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>57B6A8DF-EB2A-4278-9E8B-4ADB839736BD</key>
+		<key>BE91C9C5ADF3ADEE2969E31AF581A0C779CC0273</key>
 		<string>https://github.com/ianyh/Silica.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Silica.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>57B6A8DF-EB2A-4278-9E8B-4ADB839736BD</key>
+		<key>BE91C9C5ADF3ADEE2969E31AF581A0C779CC0273</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/ianyh/Silica.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>57B6A8DF-EB2A-4278-9E8B-4ADB839736BD</string>
+	<string>BE91C9C5ADF3ADEE2969E31AF581A0C779CC0273</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>57B6A8DF-EB2A-4278-9E8B-4ADB839736BD</string>
+			<string>BE91C9C5ADF3ADEE2969E31AF581A0C779CC0273</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Silica</string>
 		</dict>
