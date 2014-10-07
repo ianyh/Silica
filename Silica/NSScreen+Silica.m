@@ -7,15 +7,24 @@
 
 @implementation NSScreen (Silica)
 
++ (NSScreen *)originScreen {
+    for (NSScreen *screen in self.screens) {
+        if (CGPointEqualToPoint(screen.frame.origin, CGPointZero)) {
+            return screen;
+        }
+    }
+    return nil;
+}
+
 - (CGRect)frameIncludingDockAndMenu {
-    NSScreen *primaryScreen = [[NSScreen screens] objectAtIndex:0];
-    CGRect f = [self frame];
+    NSScreen *primaryScreen = [NSScreen originScreen];
+    CGRect f = self.frame;
     f.origin.y = NSHeight([primaryScreen frame]) - NSHeight(f) - f.origin.y;
     return f;
 }
 
 - (CGRect)frameWithoutDockOrMenu {
-    NSScreen *primaryScreen = [[NSScreen screens] objectAtIndex:0];
+    NSScreen *primaryScreen = [NSScreen originScreen];
     CGRect f = [self visibleFrame];
     f.origin.y = NSHeight([primaryScreen frame]) - NSHeight(f) - f.origin.y;
     return f;
