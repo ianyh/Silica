@@ -83,7 +83,7 @@
 }
 
 - (NSArray *)windowsToWest {
-    return [[self windowsInDirectionFn:^double(double angle) { return M_PI - abs(angle); }
+    return [[self windowsInDirectionFn:^double(double angle) { return M_PI - fabs(angle); }
                      shouldDisregardFn:^BOOL(double deltaX, double deltaY) { return (deltaX >= 0); }] valueForKeyPath:@"win"];
 }
 

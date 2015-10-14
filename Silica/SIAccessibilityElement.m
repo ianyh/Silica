@@ -157,8 +157,8 @@
     BOOL shouldSetSize = YES;
     CGRect currentFrame = self.frame;
     if (self.isResizable) {
-        if (abs(currentFrame.size.width - frame.size.width) < 25) {
-            if (abs(currentFrame.size.height - frame.size.height) < 25) {
+        if (fabs(currentFrame.size.width - frame.size.width) < 25) {
+            if (fabs(currentFrame.size.height - frame.size.height) < 25) {
                 shouldSetSize = NO;
             }
         }
