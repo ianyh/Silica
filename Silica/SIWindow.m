@@ -11,6 +11,10 @@
 #import "SISystemWideElement.h"
 #import "SIUniversalAccessHelper.h"
 
+@interface SIWindow ()
+@property (nonatomic, assign) CGWindowID _windowID;
+@end
+
 @implementation SIWindow
 
 #pragma mark Window Accessors
@@ -100,6 +104,20 @@
 
 #pragma mark Window Properties
 
+- (CGWindowID)windowID {
+    if (self._windowID == kCGNullWindowID) {
+        CGWindowID windowID;
+        AXError error = _AXUIElementGetWindow(self.axElementRef, &windowID);
+        if (error != kAXErrorSuccess) {
+            return NO;
+        }
+        
+        self._windowID = windowID;
+    }
+    
+    return self._windowID;
+}
+
 - (NSString *)title {
     return [self stringForKey:kAXTitleAttribute];
 }
@@ -131,10 +149,11 @@
 - (BOOL)isActive {
     if ([[self numberForKey:kAXHiddenAttribute] boolValue]) return NO;
     if ([[self numberForKey:kAXMinimizedAttribute] boolValue]) return NO;
-    
-    CGWindowID windowID;
-    AXError error = _AXUIElementGetWindow(self.axElementRef, &windowID);
-    if (error != kAXErrorSuccess) {
+    return YES;
+}
+
+- (BOOL)isOnScreen {
+    if (!self.isActive) {
         return NO;
     }
     
@@ -142,7 +161,7 @@
     BOOL isActive = NO;
     for (NSDictionary *dictionary in (__bridge NSArray *)windowDescriptions) {
         CGWindowID otherWindowID = [dictionary[(__bridge NSString *)kCGWindowNumber] intValue];
-        if (otherWindowID == windowID) {
+        if (otherWindowID == self.windowID) {
             isActive = YES;
             break;
         }

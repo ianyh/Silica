@@ -88,6 +88,13 @@
  */
 
 /**
+ * Returns the window ID of the window.
+ *
+ * @return The window ID of the window.
+ */
+- (CGWindowID)windowID;
+
+/**
  *  Returns the title of the window.
  *
  *  @return The title of the window or nil if the window has no title.
@@ -121,6 +128,13 @@
  *  @return YES if the window is active and on screen and NO otherwise.
  */
 - (BOOL)isActive;
+
+/**
+ *  Returns a BOOL indicating whether or not the window is on screen.
+ *
+ *  @return YES if the window is on screen and NO otherwise.
+ */
+- (BOOL)isOnScreen;
 
 /**
  *  Returns the application that owns the window.
