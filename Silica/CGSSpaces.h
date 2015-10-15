@@ -18,6 +18,7 @@ typedef enum _CGSSpaceSelector {
 } CGSSpaceSelector;
 
 extern CFArrayRef CGSCopySpaces(const CGSConnectionID cid, CGSSpaceSelector type);
+extern CFArrayRef CGSCopySpacesForWindows(const CGSConnectionID cid, CGSSpaceSelector type, CFArrayRef windows);
 
 extern NSNumber * CGSWillSwitchSpaces(const CGSConnectionID cid, CFArrayRef a);
 
