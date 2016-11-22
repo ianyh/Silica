@@ -5,6 +5,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  A category defining helper methods on NSScreen that are generally useful for window management.
  */
@@ -48,3 +50,5 @@
 - (BOOL)rotateTo:(int)degrees;
 
 @end
+
+NS_ASSUME_NONNULL_END

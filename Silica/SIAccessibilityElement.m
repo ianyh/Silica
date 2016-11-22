@@ -13,9 +13,9 @@
 
 #pragma mark Lifecycle
 
-- (id)init { return nil; }
+- (instancetype)init { return nil; }
 
-- (id)initWithAXElement:(AXUIElementRef)axElementRef {
+- (instancetype)initWithAXElement:(AXUIElementRef)axElementRef {
     self = [super init];
     if (self) {
         self.axElementRef = CFRetain(axElementRef);

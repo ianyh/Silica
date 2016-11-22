@@ -5,6 +5,8 @@
 
 #import "SIAccessibilityElement.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class SIApplication;
 
 /**
@@ -23,63 +25,63 @@
  *
  *  @return An array of SIWindow objects representing all windows.
  */
-+ (NSArray *)allWindows;
++ (nullable NSArray *)allWindows;
 
 /**
  * Returns all windows currently visible.
  *
  *  @return An array of SIWindow objects representing all windows currently visible.
  */
-+ (NSArray *)visibleWindows;
++ (nullable NSArray *)visibleWindows;
 
 /**
  * Returns the currently focused window.
  *
  *  @return A SIWindow object representing the currently focused window or nil if no window is focused.
  */
-+ (SIWindow *)focusedWindow;
++ (nullable SIWindow *)focusedWindow;
 
 /**
  *  Takes the window's screen and returns all other windows on the same screen.
  *
  *  @return An array of SIWindow objects representing all other windows on the same screen.
  */
-- (NSArray *)otherWindowsOnSameScreen;
+- (nullable NSArray *)otherWindowsOnSameScreen;
 
 /**
  *  Returns all other visible windows, excluding the current window.
  *
  *  @return An array of SIWindow objects representing all other windows across all screens.
  */
-- (NSArray *)otherWindowsOnAllScreens;
+- (nullable NSArray *)otherWindowsOnAllScreens;
 
 /**
  *  Returns all windows in the global coordinate system whose centers lie to the west of the current window's center.
  *
  *  @return An array of SIWindow objects whose centers are to the west of the current window's center.
  */
-- (NSArray *)windowsToWest;
+- (nullable NSArray *)windowsToWest;
 
 /**
  *  Returns all windows in the global coordinate system whose centers lie to the east of the current window's center.
  *
  *  @return An array of SIWindow objects whose centers are to the east of the current window's center.
  */
-- (NSArray *)windowsToEast;
+- (nullable NSArray *)windowsToEast;
 
 /**
  *  Returns all windows in the global coordinate system whose centers lie to the north of the current window's center.
  *
  *  @return An array of SIWindow objects whose centers are to the north of the current window's center.
  */
-- (NSArray *)windowsToNorth;
+- (nullable NSArray *)windowsToNorth;
 
 /**
  *  Returns all windows in the global coordinate system whose centers lie to the south of the current window's center.
  *
  *  @return An array of SIWindow objects whose centers are to the south of the current window's center.
  */
-- (NSArray *)windowsToSouth;
+- (nullable NSArray *)windowsToSouth;
 
 #pragma mark Window Properties
 /**---------------------------------------------------------------------------------------
@@ -99,7 +101,7 @@
  *
  *  @return The title of the window or nil if the window has no title.
  */
-- (NSString *)title;
+- (nullable NSString *)title;
 
 /**
  *  Returns a BOOL indicating whether or not the window is minimized.
@@ -141,7 +143,7 @@
  *
  *  @return A SIApplication instance for the application that owns the window.
  */
-- (SIApplication *)app;
+- (nullable SIApplication *)app;
 
 #pragma mark Screen
 /**---------------------------------------------------------------------------------------
@@ -154,7 +156,7 @@
  *
  *  @return A NSScreen instance for the screen that the window is most on.
  */
-- (NSScreen *)screen;
+- (nullable NSScreen *)screen;
 
 /**
  *  Moves the window to the given screen.
@@ -237,3 +239,5 @@
 - (void)focusWindowDown;
 
 @end
+
+NS_ASSUME_NONNULL_END

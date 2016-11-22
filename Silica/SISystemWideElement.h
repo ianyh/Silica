@@ -5,6 +5,8 @@
 
 #import "SIAccessibilityElement.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Wrapper around the system-wide element.
  */
@@ -18,3 +20,5 @@
 + (SISystemWideElement *)systemWideElement;
 
 @end
+
+NS_ASSUME_NONNULL_END
