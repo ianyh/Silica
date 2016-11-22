@@ -174,6 +174,9 @@
 
 - (SIApplication *)app {
     NSRunningApplication *runningApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.processIdentifier];
+    if (!runningApplication) {
+        return nil;
+    }
     return [SIApplication applicationWithRunningApplication:runningApplication];
 }
 

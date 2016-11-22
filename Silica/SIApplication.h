@@ -5,6 +5,8 @@
 
 #import "SIAccessibilityElement.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Block type for the handling of accessibility notifications.
  *
@@ -31,7 +33,7 @@ typedef void (^SIAXNotificationHandler)(SIAccessibilityElement *accessibilityEle
  *
  *  @return All SIApplication instaces for all running applications.
  */
-+ (NSArray *)runningApplications;
++ (nullable NSArray *)runningApplications;
 
 /**
  *  Registers a notification handler for an accessibility notification.
@@ -73,7 +75,7 @@ typedef void (^SIAXNotificationHandler)(SIAccessibilityElement *accessibilityEle
  *
  *  @return The title of the application.
  */
-- (NSString *)title;
+- (nullable NSString *)title;
 
 /**
  *  Returns a BOOL indicating whether or not the application is hidden.
@@ -108,3 +110,5 @@ typedef void (^SIAXNotificationHandler)(SIAccessibilityElement *accessibilityEle
 - (void)dropWindowsCache;
 
 @end
+
+NS_ASSUME_NONNULL_END
