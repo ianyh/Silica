@@ -43,8 +43,9 @@ typedef void (^SIAXNotificationHandler)(SIAccessibilityElement *accessibilityEle
  *  @param notification         The notification to register a handler for.
  *  @param accessibilityElement The accessibility element associated with the notification. Must be an element owned by the application or the application itself.
  *  @param handler              A block to be called when the notification is received for the accessibility element.
+ *  @return YES if adding the observer succeeded, NO otherwise
  */
-- (void)observeNotification:(CFStringRef)notification withElement:(SIAccessibilityElement *)accessibilityElement handler:(SIAXNotificationHandler)handler;
+- (BOOL)observeNotification:(CFStringRef)notification withElement:(SIAccessibilityElement *)accessibilityElement handler:(SIAXNotificationHandler)handler;
 
 /**
  *  Unregisters a notification handler for an accessibility notification.
