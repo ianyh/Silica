@@ -210,26 +210,10 @@
 
 - (void)moveToSpace:(NSUInteger)space {
     if (space > 16) return;
-
-    SIAccessibilityElement *zoomButtonElement = [self elementForKey:kAXZoomButtonAttribute];
-    CGRect zoomButtonFrame = zoomButtonElement.frame;
-    CGRect windowFrame = self.frame;
-
-    CGEventRef defaultEvent = CGEventCreate(NULL);
-    CGPoint startingCursorPoint = CGEventGetLocation(defaultEvent);
-    CGPoint mouseCursorPoint = {
-        .x = (zoomButtonElement ? CGRectGetMaxX(zoomButtonFrame) + 5.0 : windowFrame.origin.x + 5.0),
-        .y = windowFrame.origin.y + 5.0
-    };
-
-    CGEventRef mouseMoveEvent = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, mouseCursorPoint, kCGMouseButtonLeft);
-    CGEventRef mouseDownEvent = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseDown, mouseCursorPoint, kCGMouseButtonLeft);
-    CGEventRef mouseUpEvent = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseUp, mouseCursorPoint, kCGMouseButtonLeft);
-    CGEventRef mouseRestoreEvent = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, startingCursorPoint, kCGMouseButtonLeft);
-
+    
     CGKeyCode keyCode = 0xFF;
     NSString *keyCodeString = [NSString stringWithFormat:@"%@", @(space)];
-
+    
     if (keyCodeString.length > 0) {
         switch ([keyCodeString characterAtIndex:keyCodeString.length - 1]) {
             case '1':
@@ -265,14 +249,38 @@
                 break;
         }
     }
-
+    
     CGEventRef keyboardEvent = CGEventCreateKeyboardEvent(NULL, keyCode, true);
-    CGEventRef keyboardEventUp = CGEventCreateKeyboardEvent(NULL, keyCode, false);
+    
+    CGEventSetFlags(keyboardEvent, kCGEventFlagMaskControl);
+    
+    [self moveToSpaceWithEvent:[NSEvent eventWithCGEvent:keyboardEvent]];
+    
+    CFRelease(keyboardEvent);
+}
+
+- (void)moveToSpaceWithEvent:(NSEvent *)event {
+    SIAccessibilityElement *zoomButtonElement = [self elementForKey:kAXZoomButtonAttribute];
+    CGRect zoomButtonFrame = zoomButtonElement.frame;
+    CGRect windowFrame = self.frame;
+
+    CGEventRef defaultEvent = CGEventCreate(NULL);
+    CGPoint startingCursorPoint = CGEventGetLocation(defaultEvent);
+    CGPoint mouseCursorPoint = {
+        .x = (zoomButtonElement ? CGRectGetMaxX(zoomButtonFrame) + 5.0 : windowFrame.origin.x + 5.0),
+        .y = windowFrame.origin.y + 5.0
+    };
+
+    CGEventRef mouseMoveEvent = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, mouseCursorPoint, kCGMouseButtonLeft);
+    CGEventRef mouseDownEvent = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseDown, mouseCursorPoint, kCGMouseButtonLeft);
+    CGEventRef mouseUpEvent = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseUp, mouseCursorPoint, kCGMouseButtonLeft);
+    CGEventRef mouseRestoreEvent = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, startingCursorPoint, kCGMouseButtonLeft);
+    
+    CGEventRef keyboardEventUp = CGEventCreateKeyboardEvent(NULL, event.keyCode, false);
 
     CGEventSetFlags(mouseMoveEvent, 0);
     CGEventSetFlags(mouseDownEvent, 0);
     CGEventSetFlags(mouseUpEvent, 0);
-    CGEventSetFlags(keyboardEvent, kCGEventFlagMaskControl);
     CGEventSetFlags(keyboardEventUp, 0);
 
     // Move the mouse into place at the window's toolbar
@@ -280,7 +288,7 @@
     // Mouse down to grab hold of the window
     CGEventPost(kCGHIDEventTap, mouseDownEvent);
     // Send the shortcut command to get Mission Control to switch spaces from under the window.
-    CGEventPost(kCGHIDEventTap, keyboardEvent);
+    CGEventPost(kCGHIDEventTap, event.CGEvent);
     CGEventPost(kCGHIDEventTap, keyboardEventUp);
 
     double delayInSeconds = 0.5;
@@ -297,7 +305,6 @@
     CFRelease(defaultEvent);
     CFRelease(mouseMoveEvent);
     CFRelease(mouseDownEvent);
-    CFRelease(keyboardEvent);
     CFRelease(keyboardEventUp);
 }
 

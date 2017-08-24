@@ -184,6 +184,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)moveToSpace:(NSUInteger)space;
 
+/**
+ *  Moves the window to a space using the shortcut defined by the provided event.
+ *
+ *  @param event The event used to switch to a given space.
+ */
+- (void)moveToSpaceWithEvent:(NSEvent *)event;
+
 #pragma mark Window Actions
 /**---------------------------------------------------------------------------------------
  * @name Window Actions
