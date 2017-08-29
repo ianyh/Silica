@@ -104,6 +104,18 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setFrame:(CGRect)frame;
 
 /**
+ *  Updates the frame of the accessibility element.
+ *
+ *  Updates the frame of the accessibility element to match the input frame as closely as possible given known parameters.
+ *
+ *  The frame's size will be ignored if its difference from the current frame is below the given threshold.
+ *
+ *  @param frame The frame to move the element to.
+ *  @param threshold The size difference (from curent size) below which resize requests will be ignored
+ */
+- (void)setFrame:(CGRect)frame withThreshold:(uint)threshold;
+
+/**
  *  Updates the position of the accessibility element.
  *
  *  @param position The point to move the accessibility element to.
