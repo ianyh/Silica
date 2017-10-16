@@ -158,16 +158,12 @@
 }
 
 - (void)setFrame:(CGRect)frame withThreshold:(CGSize)threshold {
-    // We only want to set the size if the size has actually changed.
-    BOOL shouldSetSize = NO;
+    // We only want to set the size if the size has actually changed more than a given amount.
     CGRect currentFrame = self.frame;
-    if (self.isResizable) {
-        if (fabs(currentFrame.size.width - frame.size.width) >= threshold.width) {
-            if (fabs(currentFrame.size.height - frame.size.height) >= threshold.height) {
-                shouldSetSize = YES;
-            }
-        }
-    }
+    BOOL shouldSetSize = self.isResizable
+        && (fabs(currentFrame.size.width - frame.size.width) >= threshold.width
+        ||  fabs(currentFrame.size.height - frame.size.height) >= threshold.height);
+
 
     // We set the size before and after setting the position because the
     // accessibility APIs are really finicky with setting size.
