@@ -153,22 +153,20 @@
 }
 
 - (void)setFrame:(CGRect)frame {
-    // We only want to set the size if the size has actually changed.
-    [self setFrame:frame withThreshold:25];
+    CGSize threshold = { .width = 25, .height = 25 };
+    [self setFrame:frame withThreshold:threshold];
 }
 
-- (void)setFrame:(CGRect)frame withThreshold:(uint)threshold {
-        // We only want to set the size if the size has actually changed.
-    BOOL shouldSetSize = YES;
+- (void)setFrame:(CGRect)frame withThreshold:(CGSize)threshold {
+    // We only want to set the size if the size has actually changed.
+    BOOL shouldSetSize = NO;
     CGRect currentFrame = self.frame;
     if (self.isResizable) {
-        if (fabs(currentFrame.size.width - frame.size.width) < threshold) {
-            if (fabs(currentFrame.size.height - frame.size.height) < threshold) {
-                shouldSetSize = NO;
+        if (fabs(currentFrame.size.width - frame.size.width) >= threshold.width) {
+            if (fabs(currentFrame.size.height - frame.size.height) >= threshold.height) {
+                shouldSetSize = YES;
             }
         }
-    } else {
-        shouldSetSize = NO;
     }
 
     // We set the size before and after setting the position because the
