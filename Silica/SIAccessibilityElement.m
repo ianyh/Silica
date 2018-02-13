@@ -164,7 +164,6 @@
         && (fabs(currentFrame.size.width - frame.size.width) >= threshold.width
         ||  fabs(currentFrame.size.height - frame.size.height) >= threshold.height);
 
-
     // We set the size before and after setting the position because the
     // accessibility APIs are really finicky with setting size.
     // Note: this still occasionally silently fails to set the correct size.
@@ -172,7 +171,9 @@
         self.size = frame.size;
     }
 
-    self.position = frame.origin;
+    if (!CGPointEqualToPoint(currentFrame.origin, frame.origin)) {
+        self.position = frame.origin;
+    }
 
     if (shouldSetSize) {
         self.size = frame.size;
