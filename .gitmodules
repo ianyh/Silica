@@ -1,0 +1,3 @@
+[submodule "CGSInternal"]
+	path = CGSInternal
+	url = https://github.com/NUIKit/CGSInternal.git
