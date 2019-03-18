@@ -6,6 +6,8 @@
 #import "SIWindow.h"
 
 #import <Carbon/Carbon.h>
+#import "CGSConnection.h"
+#import "CGSSpace.h"
 #import "NSScreen+Silica.h"
 #import "SIApplication.h"
 #import "SISystemWideElement.h"

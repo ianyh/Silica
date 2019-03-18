@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.authors       = { "Ian Ynda-Hummel" => "ianynda@gmail.com", "Steven Degutis" => "steven@cleancoders.com" }
   s.platform      = :osx, '10.8'
   s.source        = { :git => "https://github.com/SiO2/Silica.git", :tag => '0.1.5' }
-  s.source_files  = 'Silica', 'Silica/**/*.{h,m}'
+  s.source_files  = 'Silica', 'Silica/**/*.{h,m}', 'CGSInternal/*.h'
   s.exclude_files = 'Silica/Exclude'
   s.frameworks    = 'AppKit', 'IOKit', 'Carbon'
   s.requires_arc  = true

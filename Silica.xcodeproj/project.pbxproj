@@ -7,32 +7,68 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		401C3596223F1C410019ED07 /* CGSTile.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C3581223F1C410019ED07 /* CGSTile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C3597223F1C410019ED07 /* CGSSurface.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C3582223F1C410019ED07 /* CGSSurface.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C3598223F1C410019ED07 /* CGSTransitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C3583223F1C410019ED07 /* CGSTransitions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C3599223F1C410019ED07 /* CGSRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C3584223F1C410019ED07 /* CGSRegion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C359A223F1C410019ED07 /* CGSWorkspace.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C3585223F1C410019ED07 /* CGSWorkspace.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C359B223F1C410019ED07 /* CGSHotKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C3586223F1C410019ED07 /* CGSHotKeys.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C359C223F1C410019ED07 /* CGSAccessibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C3587223F1C410019ED07 /* CGSAccessibility.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C359D223F1C410019ED07 /* CGSMisc.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C3588223F1C410019ED07 /* CGSMisc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C359F223F1C410019ED07 /* CGSWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C358A223F1C410019ED07 /* CGSWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C35A0223F1C410019ED07 /* CGSCursor.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C358B223F1C410019ED07 /* CGSCursor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C35A2223F1C410019ED07 /* CGSDisplays.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C358D223F1C410019ED07 /* CGSDisplays.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C35A3223F1C410019ED07 /* CGSInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C358E223F1C410019ED07 /* CGSInternal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C35A4223F1C410019ED07 /* CGSCIFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C358F223F1C410019ED07 /* CGSCIFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C35A5223F1C410019ED07 /* CGSConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C3590223F1C410019ED07 /* CGSConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C35A6223F1C410019ED07 /* CGSSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C3591223F1C410019ED07 /* CGSSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C35A7223F1C410019ED07 /* CGSDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C3592223F1C410019ED07 /* CGSDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C35A8223F1C410019ED07 /* CGSSpace.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C3593223F1C410019ED07 /* CGSSpace.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C35A9223F1C410019ED07 /* CGSEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C3594223F1C410019ED07 /* CGSEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		401C35AA223F1C410019ED07 /* CGSDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 401C3595223F1C410019ED07 /* CGSDebug.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		404B0FFA1800EBE300309019 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404B0FF91800EBE300309019 /* Carbon.framework */; };
-		4063AFDA17FB937A00E942E2 /* SISystemWideElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063AFD817FB937A00E942E2 /* SISystemWideElement.h */; };
+		4063AFDA17FB937A00E942E2 /* SISystemWideElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063AFD817FB937A00E942E2 /* SISystemWideElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4063AFDB17FB937A00E942E2 /* SISystemWideElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4063AFD917FB937A00E942E2 /* SISystemWideElement.m */; };
-		40DF250819ABF7660069CEE6 /* CGSSpaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 40DF250719ABF7660069CEE6 /* CGSSpaces.h */; };
-		40FC6ACC17FA599C00856CE7 /* SIApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 40FC6ACA17FA599C00856CE7 /* SIApplication.h */; };
+		40FC6ACC17FA599C00856CE7 /* SIApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 40FC6ACA17FA599C00856CE7 /* SIApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40FC6ACD17FA599C00856CE7 /* SIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FC6ACB17FA599C00856CE7 /* SIApplication.m */; };
-		40FC6AD017FA5A1B00856CE7 /* SIAccessibilityElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 40FC6ACE17FA5A1B00856CE7 /* SIAccessibilityElement.h */; };
+		40FC6AD017FA5A1B00856CE7 /* SIAccessibilityElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 40FC6ACE17FA5A1B00856CE7 /* SIAccessibilityElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40FC6AD117FA5A1B00856CE7 /* SIAccessibilityElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FC6ACF17FA5A1B00856CE7 /* SIAccessibilityElement.m */; };
-		40FC6AD417FA606A00856CE7 /* NSRunningApplication+Silica.h in Headers */ = {isa = PBXBuildFile; fileRef = 40FC6AD217FA606A00856CE7 /* NSRunningApplication+Silica.h */; };
+		40FC6AD417FA606A00856CE7 /* NSRunningApplication+Silica.h in Headers */ = {isa = PBXBuildFile; fileRef = 40FC6AD217FA606A00856CE7 /* NSRunningApplication+Silica.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40FC6AD517FA606A00856CE7 /* NSRunningApplication+Silica.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FC6AD317FA606A00856CE7 /* NSRunningApplication+Silica.m */; };
 		942474B917DF67D700BF9B61 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942474B817DF67D700BF9B61 /* Cocoa.framework */; };
 		942474C317DF67D700BF9B61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 942474C117DF67D700BF9B61 /* InfoPlist.strings */; };
-		942474D217DF690700BF9B61 /* SIWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474CE17DF690700BF9B61 /* SIWindow.h */; };
+		942474D217DF690700BF9B61 /* SIWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474CE17DF690700BF9B61 /* SIWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		942474D317DF690700BF9B61 /* SIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474CF17DF690700BF9B61 /* SIWindow.m */; };
-		942474D417DF690700BF9B61 /* NSScreen+Silica.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474D017DF690700BF9B61 /* NSScreen+Silica.h */; };
+		942474D417DF690700BF9B61 /* NSScreen+Silica.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474D017DF690700BF9B61 /* NSScreen+Silica.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		942474D517DF690700BF9B61 /* NSScreen+Silica.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474D117DF690700BF9B61 /* NSScreen+Silica.m */; };
-		942474E417DF693600BF9B61 /* SIUniversalAccessHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474DE17DF693600BF9B61 /* SIUniversalAccessHelper.h */; };
+		942474E417DF693600BF9B61 /* SIUniversalAccessHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 942474DE17DF693600BF9B61 /* SIUniversalAccessHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		942474E517DF693600BF9B61 /* SIUniversalAccessHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 942474DF17DF693600BF9B61 /* SIUniversalAccessHelper.m */; };
 		942474E717DF695A00BF9B61 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942474E617DF695A00BF9B61 /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		401C3581223F1C410019ED07 /* CGSTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSTile.h; sourceTree = "<group>"; };
+		401C3582223F1C410019ED07 /* CGSSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSSurface.h; sourceTree = "<group>"; };
+		401C3583223F1C410019ED07 /* CGSTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSTransitions.h; sourceTree = "<group>"; };
+		401C3584223F1C410019ED07 /* CGSRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSRegion.h; sourceTree = "<group>"; };
+		401C3585223F1C410019ED07 /* CGSWorkspace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSWorkspace.h; sourceTree = "<group>"; };
+		401C3586223F1C410019ED07 /* CGSHotKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSHotKeys.h; sourceTree = "<group>"; };
+		401C3587223F1C410019ED07 /* CGSAccessibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSAccessibility.h; sourceTree = "<group>"; };
+		401C3588223F1C410019ED07 /* CGSMisc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSMisc.h; sourceTree = "<group>"; };
+		401C358A223F1C410019ED07 /* CGSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSWindow.h; sourceTree = "<group>"; };
+		401C358B223F1C410019ED07 /* CGSCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSCursor.h; sourceTree = "<group>"; };
+		401C358D223F1C410019ED07 /* CGSDisplays.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSDisplays.h; sourceTree = "<group>"; };
+		401C358E223F1C410019ED07 /* CGSInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSInternal.h; sourceTree = "<group>"; };
+		401C358F223F1C410019ED07 /* CGSCIFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSCIFilter.h; sourceTree = "<group>"; };
+		401C3590223F1C410019ED07 /* CGSConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSConnection.h; sourceTree = "<group>"; };
+		401C3591223F1C410019ED07 /* CGSSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSSession.h; sourceTree = "<group>"; };
+		401C3592223F1C410019ED07 /* CGSDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSDevice.h; sourceTree = "<group>"; };
+		401C3593223F1C410019ED07 /* CGSSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSSpace.h; sourceTree = "<group>"; };
+		401C3594223F1C410019ED07 /* CGSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSEvent.h; sourceTree = "<group>"; };
+		401C3595223F1C410019ED07 /* CGSDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSDebug.h; sourceTree = "<group>"; };
 		404B0FF91800EBE300309019 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		4063AFD817FB937A00E942E2 /* SISystemWideElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SISystemWideElement.h; sourceTree = "<group>"; };
 		4063AFD917FB937A00E942E2 /* SISystemWideElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SISystemWideElement.m; sourceTree = "<group>"; };
-		40DF250719ABF7660069CEE6 /* CGSSpaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGSSpaces.h; sourceTree = "<group>"; };
 		40FC6ACA17FA599C00856CE7 /* SIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIApplication.h; sourceTree = "<group>"; };
 		40FC6ACB17FA599C00856CE7 /* SIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIApplication.m; sourceTree = "<group>"; };
 		40FC6ACE17FA5A1B00856CE7 /* SIAccessibilityElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAccessibilityElement.h; sourceTree = "<group>"; };
@@ -72,6 +108,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		401C3580223F1C410019ED07 /* CGSInternal */ = {
+			isa = PBXGroup;
+			children = (
+				401C3587223F1C410019ED07 /* CGSAccessibility.h */,
+				401C358F223F1C410019ED07 /* CGSCIFilter.h */,
+				401C3590223F1C410019ED07 /* CGSConnection.h */,
+				401C358B223F1C410019ED07 /* CGSCursor.h */,
+				401C3595223F1C410019ED07 /* CGSDebug.h */,
+				401C3592223F1C410019ED07 /* CGSDevice.h */,
+				401C358D223F1C410019ED07 /* CGSDisplays.h */,
+				401C3594223F1C410019ED07 /* CGSEvent.h */,
+				401C3586223F1C410019ED07 /* CGSHotKeys.h */,
+				401C358E223F1C410019ED07 /* CGSInternal.h */,
+				401C3588223F1C410019ED07 /* CGSMisc.h */,
+				401C3584223F1C410019ED07 /* CGSRegion.h */,
+				401C3591223F1C410019ED07 /* CGSSession.h */,
+				401C3593223F1C410019ED07 /* CGSSpace.h */,
+				401C3582223F1C410019ED07 /* CGSSurface.h */,
+				401C3581223F1C410019ED07 /* CGSTile.h */,
+				401C3583223F1C410019ED07 /* CGSTransitions.h */,
+				401C358A223F1C410019ED07 /* CGSWindow.h */,
+				401C3585223F1C410019ED07 /* CGSWorkspace.h */,
+			);
+			path = CGSInternal;
+			sourceTree = SOURCE_ROOT;
+		};
 		942474AB17DF67D700BF9B61 = {
 			isa = PBXGroup;
 			children = (
@@ -115,9 +177,9 @@
 		942474BE17DF67D700BF9B61 /* Silica */ = {
 			isa = PBXGroup;
 			children = (
-				40DF250719ABF7660069CEE6 /* CGSSpaces.h */,
-				942474C517DF67D700BF9B61 /* Silica.h */,
+				401C3580223F1C410019ED07 /* CGSInternal */,
 				942474E817DF6A3100BF9B61 /* Classes */,
+				942474C517DF67D700BF9B61 /* Silica.h */,
 				942474BF17DF67D700BF9B61 /* Supporting Files */,
 			);
 			path = Silica;
@@ -161,14 +223,32 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				401C3597223F1C410019ED07 /* CGSSurface.h in Headers */,
 				40FC6AD017FA5A1B00856CE7 /* SIAccessibilityElement.h in Headers */,
+				401C359D223F1C410019ED07 /* CGSMisc.h in Headers */,
+				401C35A6223F1C410019ED07 /* CGSSession.h in Headers */,
 				942474D217DF690700BF9B61 /* SIWindow.h in Headers */,
+				401C35A7223F1C410019ED07 /* CGSDevice.h in Headers */,
+				401C35A0223F1C410019ED07 /* CGSCursor.h in Headers */,
+				401C3596223F1C410019ED07 /* CGSTile.h in Headers */,
+				401C359A223F1C410019ED07 /* CGSWorkspace.h in Headers */,
+				401C35A9223F1C410019ED07 /* CGSEvent.h in Headers */,
+				401C359F223F1C410019ED07 /* CGSWindow.h in Headers */,
 				942474D417DF690700BF9B61 /* NSScreen+Silica.h in Headers */,
+				401C3599223F1C410019ED07 /* CGSRegion.h in Headers */,
 				40FC6AD417FA606A00856CE7 /* NSRunningApplication+Silica.h in Headers */,
+				401C35AA223F1C410019ED07 /* CGSDebug.h in Headers */,
+				401C35A5223F1C410019ED07 /* CGSConnection.h in Headers */,
+				401C35A2223F1C410019ED07 /* CGSDisplays.h in Headers */,
+				401C359B223F1C410019ED07 /* CGSHotKeys.h in Headers */,
 				4063AFDA17FB937A00E942E2 /* SISystemWideElement.h in Headers */,
-				40DF250819ABF7660069CEE6 /* CGSSpaces.h in Headers */,
+				401C35A8223F1C410019ED07 /* CGSSpace.h in Headers */,
+				401C35A3223F1C410019ED07 /* CGSInternal.h in Headers */,
 				40FC6ACC17FA599C00856CE7 /* SIApplication.h in Headers */,
+				401C359C223F1C410019ED07 /* CGSAccessibility.h in Headers */,
 				942474E417DF693600BF9B61 /* SIUniversalAccessHelper.h in Headers */,
+				401C35A4223F1C410019ED07 /* CGSCIFilter.h in Headers */,
+				401C3598223F1C410019ED07 /* CGSTransitions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +279,7 @@
 		942474AC17DF67D700BF9B61 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = SiO2;
 			};
 			buildConfigurationList = 942474AF17DF67D700BF9B61 /* Build configuration list for PBXProject "Silica" */;
@@ -266,13 +346,21 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -309,13 +397,21 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
