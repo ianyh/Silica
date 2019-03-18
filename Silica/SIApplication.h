@@ -4,6 +4,7 @@
 //
 
 #import "SIAccessibilityElement.h"
+#import "SIWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -62,14 +63,14 @@ typedef void (^SIAXNotificationHandler)(SIAccessibilityElement *accessibilityEle
  *
  *  @return An array of SIWindow objects for all windows in the application.
  */
-- (NSArray *)windows;
+- (NSArray<SIWindow *> *)windows;
 
 /**
  *  Returns an array of SIWindow objects for all windows in the application that are currently visible.
  *
  *  @return An array of SIWindow objects for all windows in the application that are currently visible.
  */
-- (NSArray *)visibleWindows;
+- (NSArray<SIWindow *> *)visibleWindows;
 
 /**
  *  Returns the title of the application.

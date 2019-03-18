@@ -25,14 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return An array of SIWindow objects representing all windows.
  */
-+ (nullable NSArray *)allWindows;
++ (nullable NSArray<SIWindow *> *)allWindows;
 
 /**
  * Returns all windows currently visible.
  *
  *  @return An array of SIWindow objects representing all windows currently visible.
  */
-+ (nullable NSArray *)visibleWindows;
++ (nullable NSArray<SIWindow *> *)visibleWindows;
 
 /**
  * Returns the currently focused window.
@@ -46,42 +46,42 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return An array of SIWindow objects representing all other windows on the same screen.
  */
-- (nullable NSArray *)otherWindowsOnSameScreen;
+- (nullable NSArray<SIWindow *> *)otherWindowsOnSameScreen;
 
 /**
  *  Returns all other visible windows, excluding the current window.
  *
  *  @return An array of SIWindow objects representing all other windows across all screens.
  */
-- (nullable NSArray *)otherWindowsOnAllScreens;
+- (nullable NSArray<SIWindow *> *)otherWindowsOnAllScreens;
 
 /**
  *  Returns all windows in the global coordinate system whose centers lie to the west of the current window's center.
  *
  *  @return An array of SIWindow objects whose centers are to the west of the current window's center.
  */
-- (nullable NSArray *)windowsToWest;
+- (nullable NSArray<SIWindow *> *)windowsToWest;
 
 /**
  *  Returns all windows in the global coordinate system whose centers lie to the east of the current window's center.
  *
  *  @return An array of SIWindow objects whose centers are to the east of the current window's center.
  */
-- (nullable NSArray *)windowsToEast;
+- (nullable NSArray<SIWindow *> *)windowsToEast;
 
 /**
  *  Returns all windows in the global coordinate system whose centers lie to the north of the current window's center.
  *
  *  @return An array of SIWindow objects whose centers are to the north of the current window's center.
  */
-- (nullable NSArray *)windowsToNorth;
+- (nullable NSArray<SIWindow *> *)windowsToNorth;
 
 /**
  *  Returns all windows in the global coordinate system whose centers lie to the south of the current window's center.
  *
  *  @return An array of SIWindow objects whose centers are to the south of the current window's center.
  */
-- (nullable NSArray *)windowsToSouth;
+- (nullable NSArray<SIWindow *> *)windowsToSouth;
 
 #pragma mark Window Properties
 /**---------------------------------------------------------------------------------------
