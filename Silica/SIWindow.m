@@ -13,6 +13,8 @@
 #import "SISystemWideElement.h"
 #import "SIUniversalAccessHelper.h"
 
+AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
+
 @interface SIWindow ()
 @property (nonatomic, assign) CGWindowID _windowID;
 @end
