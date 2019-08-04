@@ -101,6 +101,11 @@ void observerCallback(AXObserverRef observer, AXUIElementRef element, CFStringRe
         AXObserverRemoveNotification(self.observerRef, accessibilityElement.axElementRef, (__bridge CFStringRef)observation.notification);
     }
     [self.elementToObservations removeObjectForKey:accessibilityElement];
+    
+    if (self.elementToObservations.count == 0 && self.observerRef) {
+        CFRunLoopRemoveSource(CFRunLoopGetCurrent(), AXObserverGetRunLoopSource(self.observerRef), kCFRunLoopDefaultMode);
+        self.observerRef = nil;
+    }
 }
 
 #pragma mark Public Accessors
