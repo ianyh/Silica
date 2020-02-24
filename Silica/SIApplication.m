@@ -50,6 +50,7 @@
 
 - (void)dealloc {
     if (_observerRef) {
+        CFRunLoopRemoveSource(CFRunLoopGetCurrent(), AXObserverGetRunLoopSource(_observerRef), kCFRunLoopDefaultMode);
         for (SIAccessibilityElement *element in self.elementToObservations.allKeys) {
             for (SIApplicationObservation *observation in self.elementToObservations[element]) {
                 AXObserverRemoveNotification(_observerRef, element.axElementRef, (__bridge CFStringRef)observation.notification);
