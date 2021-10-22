@@ -8,9 +8,11 @@
 @implementation NSRunningApplication (Silica)
 
 - (BOOL)isAgent {
-    NSURL *bundleInfoPath = [[self.bundleURL URLByAppendingPathComponent:@"Contents"] URLByAppendingPathComponent:@"Info.plist"];
-    NSDictionary *applicationBundleInfoDictionary = [NSDictionary dictionaryWithContentsOfURL:bundleInfoPath];
-    return [applicationBundleInfoDictionary[@"LSUIElement"] boolValue];
+    NSBundle *bundle = [NSBundle bundleWithURL:self.bundleURL];
+    if (bundle.infoDictionary == nil) {
+        return NO;
+    }
+    return [bundle.infoDictionary[@"LSUIElement"] boolValue];
 }
 
 @end
