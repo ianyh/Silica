@@ -8,6 +8,9 @@
 @implementation NSRunningApplication (Silica)
 
 - (BOOL)isAgent {
+    if (self.bundleURL == nil) {
+        return NO;
+    }
     NSBundle *bundle = [NSBundle bundleWithURL:self.bundleURL];
     if (bundle.infoDictionary == nil) {
         return NO;
