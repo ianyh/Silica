@@ -132,6 +132,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setSize:(CGSize)size;
 
 /**
+ *  Enables enhanced user interface
+ *
+ *  @param accessibilityValueKey The accessibility key to get the value from.
+ *
+ *  @return YES if success, NO otherwise.
+ *
+ */
+- (BOOL)setFlag:(BOOL)flag forKey:(CFStringRef)accessibilityValueKey;
+
+/**
  *  Returns the pid of the process that owns the accessibility element.
  *
  *  @return The pid of the process that owns the accessibility element.

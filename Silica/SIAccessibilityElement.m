@@ -204,6 +204,14 @@
     }
 }
 
+- (BOOL)setFlag:(BOOL)flag forKey:(CFStringRef)accessibilityValueKey {
+    AXError error;
+    
+    error = AXUIElementSetAttributeValue(self.axElementRef, accessibilityValueKey, flag ? kCFBooleanTrue : kCFBooleanFalse);
+    
+    return error != kAXErrorSuccess;
+}
+
 - (pid_t)processIdentifier {
     pid_t processIdentifier;
     AXError error;
