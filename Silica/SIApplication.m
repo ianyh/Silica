@@ -50,7 +50,7 @@
 
 - (void)dealloc {
     if (_observerRef) {
-        CFRunLoopRemoveSource(CFRunLoopGetCurrent(), AXObserverGetRunLoopSource(_observerRef), kCFRunLoopDefaultMode);
+        CFRunLoopRemoveSource(CFRunLoopGetMain(), AXObserverGetRunLoopSource(_observerRef), kCFRunLoopDefaultMode);
         for (SIAccessibilityElement *element in self.elementToObservations.allKeys) {
             for (SIApplicationObservation *observation in self.elementToObservations[element]) {
                 AXObserverRemoveNotification(_observerRef, element.axElementRef, (__bridge CFStringRef)observation.notification);
@@ -75,7 +75,7 @@ void observerCallback(AXObserverRef observer, AXUIElementRef element, CFStringRe
 
         if (error != kAXErrorSuccess) return NO;
 
-        CFRunLoopAddSource(CFRunLoopGetCurrent(), AXObserverGetRunLoopSource(observerRef), kCFRunLoopDefaultMode);
+        CFRunLoopAddSource(CFRunLoopGetMain(), AXObserverGetRunLoopSource(observerRef), kCFRunLoopDefaultMode);
 
         self.observerRef = observerRef;
         self.elementToObservations = [NSMutableDictionary dictionaryWithCapacity:1];
@@ -104,7 +104,7 @@ void observerCallback(AXObserverRef observer, AXUIElementRef element, CFStringRe
     [self.elementToObservations removeObjectForKey:accessibilityElement];
     
     if (self.elementToObservations.count == 0 && self.observerRef) {
-        CFRunLoopRemoveSource(CFRunLoopGetCurrent(), AXObserverGetRunLoopSource(self.observerRef), kCFRunLoopDefaultMode);
+        CFRunLoopRemoveSource(CFRunLoopGetMain(), AXObserverGetRunLoopSource(self.observerRef), kCFRunLoopDefaultMode);
         self.observerRef = nil;
     }
 }
