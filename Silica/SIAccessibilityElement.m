@@ -4,6 +4,7 @@
 //
 
 #import "SIAccessibilityElement.h"
+#import "SIApplication.h"
 
 @interface SIAccessibilityElement ()
 @property (nonatomic, assign) AXUIElementRef axElementRef;
@@ -221,6 +222,14 @@
     if (error != kAXErrorSuccess) return -1;
     
     return processIdentifier;
+}
+
+- (SIApplication *)app {
+    NSRunningApplication *runningApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.processIdentifier];
+    if (!runningApplication) {
+        return nil;
+    }
+    return [SIApplication applicationWithRunningApplication:runningApplication];
 }
 
 @end

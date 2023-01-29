@@ -176,14 +176,6 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
     return isActive;
 }
 
-- (SIApplication *)app {
-    NSRunningApplication *runningApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.processIdentifier];
-    if (!runningApplication) {
-        return nil;
-    }
-    return [SIApplication applicationWithRunningApplication:runningApplication];
-}
-
 #pragma mark Screen
 
 - (NSScreen *)screen {
