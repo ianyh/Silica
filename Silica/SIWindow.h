@@ -138,13 +138,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)isOnScreen;
 
-/**
- *  Returns the application that owns the window.
- *
- *  @return A SIApplication instance for the application that owns the window.
- */
-- (nullable SIApplication *)app;
-
 #pragma mark Screen
 /**---------------------------------------------------------------------------------------
  * @name Screen

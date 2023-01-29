@@ -7,6 +7,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class SIApplication;
+
 /**
  *  Object encapsulating an accessibility element. An accessibility element is anything from a button in a window to a running application.
  */
@@ -147,6 +149,13 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return The pid of the process that owns the accessibility element.
  */
 - (pid_t)processIdentifier;
+
+/**
+ *  Returns the application that owns the element.
+ *
+ *  @return A SIApplication instance for the application that owns the element.
+ */
+- (nullable SIApplication *)app;
 
 @end
 
