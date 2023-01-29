@@ -6,6 +6,8 @@
 #import "SIAccessibilityElement.h"
 #import "SIApplication.h"
 
+#define kAXEnhancedUserInterfaceKey CFSTR("AXEnhancedUserInterface")
+
 @interface SIAccessibilityElement ()
 @property (nonatomic, assign) AXUIElementRef axElementRef;
 @end
@@ -164,6 +166,12 @@
     BOOL shouldSetSize = self.isResizable
         && (fabs(currentFrame.size.width - frame.size.width) >= threshold.width
         ||  fabs(currentFrame.size.height - frame.size.height) >= threshold.height);
+    
+    SIApplication *application = [self app];
+    BOOL flag = [application numberForKey:kAXEnhancedUserInterfaceKey];
+    if (flag) {
+        [application setFlag:NO forKey:kAXEnhancedUserInterfaceKey];
+    }
 
     // We set the size before and after setting the position because the
     // accessibility APIs are really finicky with setting size.
@@ -178,6 +186,10 @@
 
     if (shouldSetSize) {
         self.size = frame.size;
+    }
+    
+    if (flag) {
+        [application setFlag:flag forKey:kAXEnhancedUserInterfaceKey];
     }
 }
 
