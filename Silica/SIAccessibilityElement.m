@@ -168,7 +168,7 @@
         ||  fabs(currentFrame.size.height - frame.size.height) >= threshold.height);
     
     SIApplication *application = [self app];
-    BOOL flag = [application numberForKey:kAXEnhancedUserInterfaceKey];
+    BOOL flag = [[application numberForKey:kAXEnhancedUserInterfaceKey] boolValue];
     if (flag) {
         [application setFlag:NO forKey:kAXEnhancedUserInterfaceKey];
     }
