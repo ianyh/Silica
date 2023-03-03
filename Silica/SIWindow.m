@@ -336,7 +336,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
 
 - (BOOL)focusWindow {
     NSRunningApplication *runningApplication = [NSRunningApplication runningApplicationWithProcessIdentifier:self.processIdentifier];
-    BOOL success = [runningApplication activateWithOptions:NSApplicationActivateAllWindows | NSApplicationActivateIgnoringOtherApps];
+    BOOL success = [runningApplication activateWithOptions:NSApplicationActivateIgnoringOtherApps];
     if (!success) {
         return NO;
     }
