@@ -104,7 +104,7 @@ void observerCallback(AXObserverRef observer, AXUIElementRef element, CFStringRe
     [self.elementToObservations removeObjectForKey:accessibilityElement];
     
     if (self.elementToObservations.count == 0 && self.observerRef) {
-        CFRunLoopRemoveSource(CFRunLoopGetMain(), AXObserverGetRunLoopSource(self.observerRef), kCFRunLoopDefaultMode);
+        CFRunLoopSourceInvalidate(AXObserverGetRunLoopSource(self.observerRef));
         self.observerRef = nil;
     }
 }
