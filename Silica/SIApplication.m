@@ -98,7 +98,8 @@ void observerCallback(AXObserverRef observer, AXUIElementRef element, CFStringRe
 }
 
 - (void)unobserveNotification:(CFStringRef)notification withElement:(SIAccessibilityElement *)accessibilityElement {
-    for (SIApplicationObservation *observation in self.elementToObservations[accessibilityElement]) {
+    NSArray<SIApplicationObservation *> *observations = self.elementToObservations[accessibilityElement];
+    for (SIApplicationObservation *observation in observations) {
         AXObserverRemoveNotification(self.observerRef, accessibilityElement.axElementRef, (__bridge CFStringRef)observation.notification);
     }
     [self.elementToObservations removeObjectForKey:accessibilityElement];
