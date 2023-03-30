@@ -56,6 +56,7 @@
                 AXObserverRemoveNotification(_observerRef, element.axElementRef, (__bridge CFStringRef)observation.notification);
             }
         }
+        CFRunLoopSourceInvalidate(AXObserverGetRunLoopSource(_observerRef));
         CFRelease(_observerRef);
     }
 }
