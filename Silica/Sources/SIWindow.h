@@ -3,6 +3,7 @@
 //  Silica
 //
 
+#import <AppKit/AppKit.h>
 #import "SIAccessibilityElement.h"
 
 NS_ASSUME_NONNULL_BEGIN

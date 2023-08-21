@@ -3,6 +3,7 @@
 //  Silica
 //
 
+#import <AppKit/AppKit.h>
 #import "SIAccessibilityElement.h"
 #import "SIWindow.h"
 
