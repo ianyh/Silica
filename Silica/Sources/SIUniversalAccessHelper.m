@@ -3,6 +3,7 @@
 //  Silica
 //
 
+#import <AppKit/AppKit.h>
 #import "SIUniversalAccessHelper.h"
 
 @implementation SIUniversalAccessHelper

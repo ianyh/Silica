@@ -10,12 +10,13 @@
 #import <AppKit/AppKit.h>
 #import <IOKit/IOKitLib.h>
 
-#import <Silica/CGSConnection.h>
-#import <Silica/CGSSpace.h>
-#import <Silica/NSRunningApplication+Silica.h>
-#import <Silica/NSScreen+Silica.h>
-#import <Silica/SIAccessibilityElement.h>
-#import <Silica/SIApplication.h>
-#import <Silica/SISystemWideElement.h>
-#import <Silica/SIUniversalAccessHelper.h>
-#import <Silica/SIWindow.h>
+#import "CGSConnection.h"
+#import "CGSDisplays.h"
+#import "CGSSpace.h"
+#import "NSRunningApplication+Silica.h"
+#import "NSScreen+Silica.h"
+#import "SIAccessibilityElement.h"
+#import "SIApplication.h"
+#import "SISystemWideElement.h"
+#import "SIUniversalAccessHelper.h"
+#import "SIWindow.h"

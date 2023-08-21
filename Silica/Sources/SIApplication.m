@@ -5,6 +5,7 @@
 
 #import "SIApplication.h"
 
+#import <AppKit/AppKit.h>
 #import "SIWindow.h"
 #import "SIUniversalAccessHelper.h"
 
