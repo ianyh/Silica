@@ -341,6 +341,10 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
         return NO;
     }
 
+    return [self raiseWindow];
+}
+
+- (BOOL)raiseWindow {
     AXError error = AXUIElementPerformAction(self.axElementRef, kAXRaiseAction);
     if (error != kAXErrorSuccess) {
         return NO;

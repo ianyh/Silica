@@ -220,6 +220,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)focusWindow;
 
 /**
+ Perform a raise action without bringing the application into focus.
+ @return YES if the window was successfully raised and NO otherwise.
+ */
+- (BOOL)raiseWindow;
+
+/**
  *  Move window focus to the first window to the west of the current window.
  */
 - (void)focusWindowLeft;
