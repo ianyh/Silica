@@ -208,11 +208,16 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
 - (void)moveToSpace:(NSUInteger)space {
     if (space > 16) return;
     
+    CGSSymbolicHotKey hotKey = (unsigned short)(118 + space - 1);
     CGSModifierFlags flags;
     CGKeyCode keyCode = 0;
-    CGError error = CGSGetSymbolicHotKeyValue((unsigned short)(118 + space - 1), nil, &keyCode, &flags);
+    CGError error = CGSGetSymbolicHotKeyValue(hotKey, nil, &keyCode, &flags);
     
     if (error != kCGErrorSuccess) return;
+    
+    if (!CGSIsSymbolicHotKeyEnabled(hotKey)) {
+        error = CGSSetSymbolicHotKeyEnabled(hotKey, true);
+    }
     
     CGEventRef keyboardEvent = CGEventCreateKeyboardEvent(NULL, keyCode, true);
     
