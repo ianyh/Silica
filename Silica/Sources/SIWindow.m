@@ -7,6 +7,7 @@
 
 #import <Carbon/Carbon.h>
 #import "CGSInternal/CGSConnection.h"
+#import "CGSInternal/CGSHotKeys.h"
 #import "CGSInternal/CGSSpace.h"
 #import "NSScreen+Silica.h"
 #import "SIApplication.h"
@@ -207,48 +208,15 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
 - (void)moveToSpace:(NSUInteger)space {
     if (space > 16) return;
     
-    CGKeyCode keyCode = 0xFF;
-    NSString *keyCodeString = [NSString stringWithFormat:@"%@", @(space)];
+    CGSModifierFlags flags;
+    CGKeyCode keyCode = 0;
+    CGError error = CGSGetSymbolicHotKeyValue((unsigned short)(118 + space - 1), nil, &keyCode, &flags);
     
-    if (keyCodeString.length > 0) {
-        switch ([keyCodeString characterAtIndex:keyCodeString.length - 1]) {
-            case '1':
-                keyCode = kVK_ANSI_1;
-                break;
-            case '2':
-                keyCode = kVK_ANSI_2;
-                break;
-            case '3':
-                keyCode = kVK_ANSI_3;
-                break;
-            case '4':
-                keyCode = kVK_ANSI_4;
-                break;
-            case '5':
-                keyCode = kVK_ANSI_5;
-                break;
-            case '6':
-                keyCode = kVK_ANSI_6;
-                break;
-            case '7':
-                keyCode = kVK_ANSI_7;
-                break;
-            case '8':
-                keyCode = kVK_ANSI_8;
-                break;
-            case '9':
-                keyCode = kVK_ANSI_9;
-                break;
-            case '0':
-            default:
-                keyCode = kVK_ANSI_0;
-                break;
-        }
-    }
+    if (error != kCGErrorSuccess) return;
     
     CGEventRef keyboardEvent = CGEventCreateKeyboardEvent(NULL, keyCode, true);
     
-    CGEventSetFlags(keyboardEvent, kCGEventFlagMaskControl);
+    CGEventSetFlags(keyboardEvent, (CGEventFlags)flags);
     
     [self moveToSpaceWithEvent:[NSEvent eventWithCGEvent:keyboardEvent]];
     
