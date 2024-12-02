@@ -5,6 +5,7 @@
 
 #import "SISystemWideElement.h"
 
+#import <AppKit/AppKit.h>
 #import "CGSInternal/CGSHotKeys.h"
 
 @implementation SISystemWideElement
