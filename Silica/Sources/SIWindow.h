@@ -170,10 +170,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Moves the window to a given space. The space is provided as a number between 1 and 16, which corresponds to the numerical index of the space defined by Mission Control.
  *
- *  This method relies on two things:
- *    1. Mission Control keyboard shortcuts must be turned on.
- *    2. Mission Control keyboard shortcuts must be of the form ^+space
- *
  *  @param space The space on which to move the window.
  */
 - (void)moveToSpace:(NSUInteger)space;

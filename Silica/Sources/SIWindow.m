@@ -206,26 +206,10 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
 #pragma mark Space
 
 - (void)moveToSpace:(NSUInteger)space {
-    if (space > 16) return;
+    NSEvent *event = [SISystemWideElement eventForSwitchingToSpace:space];
+    if (event == nil) return;
     
-    CGSSymbolicHotKey hotKey = (unsigned short)(118 + space - 1);
-    CGSModifierFlags flags;
-    CGKeyCode keyCode = 0;
-    CGError error = CGSGetSymbolicHotKeyValue(hotKey, nil, &keyCode, &flags);
-    
-    if (error != kCGErrorSuccess) return;
-    
-    if (!CGSIsSymbolicHotKeyEnabled(hotKey)) {
-        error = CGSSetSymbolicHotKeyEnabled(hotKey, true);
-    }
-    
-    CGEventRef keyboardEvent = CGEventCreateKeyboardEvent(NULL, keyCode, true);
-    
-    CGEventSetFlags(keyboardEvent, (CGEventFlags)flags);
-    
-    [self moveToSpaceWithEvent:[NSEvent eventWithCGEvent:keyboardEvent]];
-    
-    CFRelease(keyboardEvent);
+    [self moveToSpaceWithEvent:event];
 }
 
 - (void)moveToSpaceWithEvent:(NSEvent *)event {
@@ -245,20 +229,16 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
     CGEventRef mouseUpEvent = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseUp, mouseCursorPoint, kCGMouseButtonLeft);
     CGEventRef mouseRestoreEvent = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, startingCursorPoint, kCGMouseButtonLeft);
     
-    CGEventRef keyboardEventUp = CGEventCreateKeyboardEvent(NULL, event.keyCode, false);
-
     CGEventSetFlags(mouseMoveEvent, 0);
     CGEventSetFlags(mouseDownEvent, 0);
     CGEventSetFlags(mouseUpEvent, 0);
-    CGEventSetFlags(keyboardEventUp, 0);
 
     // Move the mouse into place at the window's toolbar
     CGEventPost(kCGHIDEventTap, mouseMoveEvent);
     // Mouse down to grab hold of the window
     CGEventPost(kCGHIDEventTap, mouseDownEvent);
     // Send the shortcut command to get Mission Control to switch spaces from under the window.
-    CGEventPost(kCGHIDEventTap, event.CGEvent);
-    CGEventPost(kCGHIDEventTap, keyboardEventUp);
+    [SISystemWideElement switchToSpaceWithEvent:event];
 
     double delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -274,7 +254,6 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
     CFRelease(defaultEvent);
     CFRelease(mouseMoveEvent);
     CFRelease(mouseDownEvent);
-    CFRelease(keyboardEventUp);
 }
 
 #pragma mark Window Actions
