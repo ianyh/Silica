@@ -237,20 +237,32 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
     CGEventPost(kCGHIDEventTap, mouseMoveEvent);
     // Mouse down to grab hold of the window
     CGEventPost(kCGHIDEventTap, mouseDownEvent);
-    // Send the shortcut command to get Mission Control to switch spaces from under the window.
-    [SISystemWideElement switchToSpaceWithEvent:event];
-
-    double delayInSeconds = 0.5;
+    
+    // Make a slight delay to make sure the window is grabbed
+    double delayInSeconds = 0.05;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        // Let go of the window.
-        CGEventPost(kCGHIDEventTap, mouseUpEvent);
-        // Move the cursor back to its previous position.
-        CGEventPost(kCGHIDEventTap, mouseRestoreEvent);
-        CFRelease(mouseUpEvent);
-        CFRelease(mouseRestoreEvent);
-    });
+        // Send the shortcut command to get Mission Control to switch spaces from under the window
+        [SISystemWideElement switchToSpaceWithEvent:event];
 
+        // Make a slight delay to finish the space transition animation
+        double delayInSeconds = 0.4;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            // Let go of the window.
+            CGEventPost(kCGHIDEventTap, mouseUpEvent);
+            // Make a slight delay to let go of the window
+            double delayInSeconds = 0.05;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                // Move the cursor back to its previous position.
+                CGEventPost(kCGHIDEventTap, mouseRestoreEvent);
+                CFRelease(mouseRestoreEvent);
+            });
+            CFRelease(mouseUpEvent);
+        });
+    });
+    
     CFRelease(defaultEvent);
     CFRelease(mouseMoveEvent);
     CFRelease(mouseDownEvent);
