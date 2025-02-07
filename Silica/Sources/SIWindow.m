@@ -213,18 +213,19 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
 }
 
 - (void)moveToSpaceWithEvent:(NSEvent *)event {
-    SIAccessibilityElement *zoomButtonElement = [self elementForKey:kAXZoomButtonAttribute];
-    CGRect zoomButtonFrame = zoomButtonElement.frame;
+    SIAccessibilityElement *minimizeButtonElement = [self elementForKey:kAXMinimizeButtonAttribute];
+    CGRect minimizeButtonFrame = minimizeButtonElement.frame;
     CGRect windowFrame = self.frame;
 
     CGEventRef defaultEvent = CGEventCreate(NULL);
     CGPoint startingCursorPoint = CGEventGetLocation(defaultEvent);
     CGPoint mouseCursorPoint = {
-        .x = (zoomButtonElement ? CGRectGetMaxX(zoomButtonFrame) + 5.0 : windowFrame.origin.x + 5.0),
-        .y = windowFrame.origin.y + 5.0
+        .x = (minimizeButtonElement ? CGRectGetMidX(minimizeButtonFrame) : windowFrame.origin.x + 5.0),
+        .y = windowFrame.origin.y + fabs(windowFrame.origin.y - CGRectGetMinY(minimizeButtonFrame)) / 2.0
     };
 
     CGEventRef mouseMoveEvent = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, mouseCursorPoint, kCGMouseButtonLeft);
+    CGEventRef mouseDragEvent = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseDragged, mouseCursorPoint, kCGMouseButtonLeft);
     CGEventRef mouseDownEvent = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseDown, mouseCursorPoint, kCGMouseButtonLeft);
     CGEventRef mouseUpEvent = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseUp, mouseCursorPoint, kCGMouseButtonLeft);
     CGEventRef mouseRestoreEvent = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, startingCursorPoint, kCGMouseButtonLeft);
@@ -235,16 +236,18 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
 
     // Move the mouse into place at the window's toolbar
     CGEventPost(kCGHIDEventTap, mouseMoveEvent);
-    // Mouse down to grab hold of the window
+    // Mouse down to set up the drag
     CGEventPost(kCGHIDEventTap, mouseDownEvent);
-    
+    // Drag event to grab hold of the window
+    CGEventPost(kCGHIDEventTap, mouseDragEvent);
+
     // Make a slight delay to make sure the window is grabbed
     double delayInSeconds = 0.05;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         // Send the shortcut command to get Mission Control to switch spaces from under the window
         [SISystemWideElement switchToSpaceWithEvent:event];
-
+        
         // Make a slight delay to finish the space transition animation
         double delayInSeconds = 0.4;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
