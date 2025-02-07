@@ -217,8 +217,6 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
     CGRect minimizeButtonFrame = minimizeButtonElement.frame;
     CGRect windowFrame = self.frame;
 
-    CGEventRef defaultEvent = CGEventCreate(NULL);
-    CGPoint startingCursorPoint = CGEventGetLocation(defaultEvent);
     CGPoint mouseCursorPoint = {
         .x = (minimizeButtonElement ? CGRectGetMidX(minimizeButtonFrame) : windowFrame.origin.x + 5.0),
         .y = windowFrame.origin.y + fabs(windowFrame.origin.y - CGRectGetMinY(minimizeButtonFrame)) / 2.0
@@ -228,7 +226,6 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
     CGEventRef mouseDragEvent = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseDragged, mouseCursorPoint, kCGMouseButtonLeft);
     CGEventRef mouseDownEvent = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseDown, mouseCursorPoint, kCGMouseButtonLeft);
     CGEventRef mouseUpEvent = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseUp, mouseCursorPoint, kCGMouseButtonLeft);
-    CGEventRef mouseRestoreEvent = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, startingCursorPoint, kCGMouseButtonLeft);
     
     CGEventSetFlags(mouseMoveEvent, 0);
     CGEventSetFlags(mouseDownEvent, 0);
@@ -254,19 +251,10 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             // Let go of the window.
             CGEventPost(kCGHIDEventTap, mouseUpEvent);
-            // Make a slight delay to let go of the window
-            double delayInSeconds = 0.05;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                // Move the cursor back to its previous position.
-                CGEventPost(kCGHIDEventTap, mouseRestoreEvent);
-                CFRelease(mouseRestoreEvent);
-            });
             CFRelease(mouseUpEvent);
         });
     });
-    
-    CFRelease(defaultEvent);
+
     CFRelease(mouseMoveEvent);
     CFRelease(mouseDownEvent);
 }
