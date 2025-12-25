@@ -85,8 +85,14 @@
 
     error = AXUIElementCopyAttributeValue(self.axElementRef, accessibilityValueKey, &valueRef);
 
-    if (error != kAXErrorSuccess || !valueRef) return nil;
-    if (CFGetTypeID(valueRef) != CFStringGetTypeID()) return nil;
+    if (error != kAXErrorSuccess || !valueRef) {
+        return nil;
+    }
+    
+    if (CFGetTypeID(valueRef) != CFStringGetTypeID()) {
+        CFRelease(valueRef);
+        return nil;
+    }
 
     return CFBridgingRelease(valueRef);
 }
@@ -97,8 +103,14 @@
 
     error = AXUIElementCopyAttributeValue(self.axElementRef, accessibilityValueKey, &valueRef);
 
-    if (error != kAXErrorSuccess || !valueRef) return nil;
-    if (CFGetTypeID(valueRef) != CFNumberGetTypeID() && CFGetTypeID(valueRef) != CFBooleanGetTypeID()) return nil;
+    if (error != kAXErrorSuccess || !valueRef) {
+        return nil;
+    }
+
+    if (CFGetTypeID(valueRef) != CFNumberGetTypeID() && CFGetTypeID(valueRef) != CFBooleanGetTypeID()) {
+        CFRelease(valueRef);
+        return nil;
+    }
     
     return CFBridgingRelease(valueRef);
 }
@@ -109,7 +121,9 @@
 
     error = AXUIElementCopyAttributeValues(self.axElementRef, accessibilityValueKey, 0, 100, &arrayRef);
 
-    if (error != kAXErrorSuccess || !arrayRef) return nil;
+    if (error != kAXErrorSuccess || !arrayRef) {
+        return nil;
+    }
 
     return CFBridgingRelease(arrayRef);
 }
@@ -120,8 +134,14 @@
 
     error = AXUIElementCopyAttributeValue(self.axElementRef, accessibilityValueKey, &valueRef);
 
-    if (error != kAXErrorSuccess || !valueRef) return nil;
-    if (CFGetTypeID(valueRef) != AXUIElementGetTypeID()) return nil;
+    if (error != kAXErrorSuccess || !valueRef) {
+        return nil;
+    }
+    
+    if (CFGetTypeID(valueRef) != AXUIElementGetTypeID()) {
+        CFRelease(valueRef);
+        return nil;
+    }
 
     SIAccessibilityElement *element = [[SIAccessibilityElement alloc] initWithAXElement:(AXUIElementRef)valueRef];
 
@@ -139,20 +159,32 @@
     if (error != kAXErrorSuccess || !pointRef) return CGRectNull;
     
     error = AXUIElementCopyAttributeValue(self.axElementRef, kAXSizeAttribute, &sizeRef);
-    if (error != kAXErrorSuccess || !sizeRef) return CGRectNull;
+    if (error != kAXErrorSuccess || !sizeRef) {
+        CFRelease(pointRef);
+        return CGRectNull;
+    }
     
     CGPoint point;
     CGSize size;
     bool success;
     
     success = AXValueGetValue(pointRef, kAXValueCGPointType, &point);
-    if (!success) return CGRectNull;
+    if (!success) {
+        CFRelease(pointRef);
+        CFRelease(sizeRef);
+        return CGRectNull;
+    }
     
     success = AXValueGetValue(sizeRef, kAXValueCGSizeType, &size);
-    if (!success) return CGRectNull;
+    if (!success) {
+        CFRelease(pointRef);
+        CFRelease(sizeRef);
+        return CGRectNull;
+    }
     
     CGRect frame = { .origin.x = point.x, .origin.y = point.y, .size.width = size.width, .size.height = size.height };
-    
+    CFRelease(pointRef);
+    CFRelease(sizeRef);
     return frame;
 }
 
@@ -201,9 +233,12 @@
     if (!CGPointEqualToPoint(position, [self frame].origin)) {
         error = AXUIElementSetAttributeValue(self.axElementRef, kAXPositionAttribute, positionRef);
         if (error != kAXErrorSuccess) {
+            CFRelease(positionRef);
             return;
         }
     }
+    
+    CFRelease(positionRef);
 }
 
 - (void)setSize:(CGSize)size {
@@ -213,9 +248,12 @@
     if (!CGSizeEqualToSize(size, [self frame].size)) {
         error = AXUIElementSetAttributeValue(self.axElementRef, kAXSizeAttribute, sizeRef);
         if (error != kAXErrorSuccess) {
+            CFRelease(sizeRef);
             return;
         }
     }
+    
+    CFRelease(sizeRef);
 }
 
 - (BOOL)setFlag:(BOOL)flag forKey:(CFStringRef)accessibilityValueKey {

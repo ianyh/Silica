@@ -64,10 +64,12 @@ AXError _AXUIElementGetWindow(AXUIElementRef element, CGWindowID *idOut);
             if ([window isSheet]) {
                 SIAccessibilityElement *parent = [window elementForKey:kAXParentAttribute];
                 if (parent) {
+                    CFRelease(windowRef);
                     return [[SIWindow alloc] initWithAXElement:parent.axElementRef];
                 }
             }
 
+            CFRelease(windowRef);
             return window;
         }
     }
