@@ -70,7 +70,7 @@ void observerCallback(AXObserverRef observer, AXUIElementRef element, CFStringRe
     callback(window);
 }
 
-- (BOOL)observeNotification:(CFStringRef)notification withElement:(SIAccessibilityElement *)accessibilityElement handler:(SIAXNotificationHandler)handler {
+- (AXError)observeNotification:(CFStringRef)notification withElement:(SIAccessibilityElement *)accessibilityElement handler:(SIAXNotificationHandler)handler {
     if (!self.observerRef) {
         AXObserverRef observerRef;
         AXError error = AXObserverCreate(self.processIdentifier, &observerCallback, &observerRef);
@@ -85,7 +85,13 @@ void observerCallback(AXObserverRef observer, AXUIElementRef element, CFStringRe
     
     AXError error = AXObserverAddNotification(self.observerRef, accessibilityElement.axElementRef, notification, (__bridge void *)handler);
     
-    if (error != kAXErrorSuccess) return NO;
+    if (error != kAXErrorSuccess && error != kAXErrorNotificationAlreadyRegistered) {
+        return error;
+    }
+    
+    if (error == kAXErrorNotificationAlreadyRegistered) {
+        return error;
+    }
     
     SIApplicationObservation *observation = [[SIApplicationObservation alloc] init];
     observation.notification = (__bridge NSString *)notification;
@@ -96,7 +102,7 @@ void observerCallback(AXObserverRef observer, AXUIElementRef element, CFStringRe
     }
     [self.elementToObservations[accessibilityElement] addObject:observation];
     
-    return YES;
+    return error;
 }
 
 - (void)unobserveNotification:(CFStringRef)notification withElement:(SIAccessibilityElement *)accessibilityElement {
