@@ -75,7 +75,7 @@ void observerCallback(AXObserverRef observer, AXUIElementRef element, CFStringRe
         AXObserverRef observerRef;
         AXError error = AXObserverCreate(self.processIdentifier, &observerCallback, &observerRef);
 
-        if (error != kAXErrorSuccess) return NO;
+        if (error != kAXErrorSuccess) return error;
 
         CFRunLoopAddSource(CFRunLoopGetMain(), AXObserverGetRunLoopSource(observerRef), kCFRunLoopDefaultMode);
 
