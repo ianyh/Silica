@@ -19,6 +19,8 @@
 
 @interface SIApplication ()
 @property (nonatomic, assign) AXObserverRef observerRef;
+/// Whether the current observer was created with the application as its context; fixed for the observer's lifetime.
+@property (nonatomic, assign) BOOL observerUsesApplicationCallback;
 @property (nonatomic, strong) NSMutableDictionary *elementToObservations;
 
 @property (nonatomic, strong) NSMutableArray *cachedWindows;
@@ -70,20 +72,57 @@ void observerCallback(AXObserverRef observer, AXUIElementRef element, CFStringRe
     callback(window);
 }
 
+void applicationObserverCallback(AXObserverRef observer, AXUIElementRef element, CFStringRef notification, void *refcon) {
+    SIApplication *application = (__bridge SIApplication *)refcon;
+    [application deliverNotification:notification forElement:element];
+}
+
+- (void)setUsesApplicationCallback:(BOOL)usesApplicationCallback {
+    if (usesApplicationCallback == _usesApplicationCallback) return;
+    NSAssert(!self.observerRef, @"usesApplicationCallback cannot change while notifications are observed");
+    _usesApplicationCallback = usesApplicationCallback;
+}
+
+/// The handler registered for `notification` on `element`, or failing that on the application; nil once the registration is gone.
+- (SIAXNotificationHandler)handlerForNotification:(CFStringRef)notification element:(AXUIElementRef)element {
+    SIAXNotificationHandler applicationHandler = nil;
+    for (SIAccessibilityElement *registered in self.elementToObservations) {
+        BOOL matchesElement = CFEqual(registered.axElementRef, element);
+        BOOL matchesApplication = CFEqual(registered.axElementRef, self.axElementRef);
+        if (!matchesElement && !matchesApplication) continue;
+        for (SIApplicationObservation *observation in self.elementToObservations[registered]) {
+            if (!CFEqual((__bridge CFStringRef)observation.notification, notification)) continue;
+            if (matchesElement) return observation.handler;
+            applicationHandler = observation.handler;
+        }
+    }
+    return applicationHandler;
+}
+
+- (void)deliverNotification:(CFStringRef)notification forElement:(AXUIElementRef)element {
+    SIAXNotificationHandler handler = [self handlerForNotification:notification element:element];
+    if (!handler) return;
+    SIWindow *window = [[SIWindow alloc] initWithAXElement:element];
+    handler(window);
+}
+
 - (AXError)observeNotification:(CFStringRef)notification withElement:(SIAccessibilityElement *)accessibilityElement handler:(SIAXNotificationHandler)handler {
     if (!self.observerRef) {
         AXObserverRef observerRef;
-        AXError error = AXObserverCreate(self.processIdentifier, &observerCallback, &observerRef);
+        AXObserverCallback callback = self.usesApplicationCallback ? &applicationObserverCallback : &observerCallback;
+        AXError error = AXObserverCreate(self.processIdentifier, callback, &observerRef);
 
         if (error != kAXErrorSuccess) return error;
 
         CFRunLoopAddSource(CFRunLoopGetMain(), AXObserverGetRunLoopSource(observerRef), kCFRunLoopDefaultMode);
 
         self.observerRef = observerRef;
+        self.observerUsesApplicationCallback = self.usesApplicationCallback;
         self.elementToObservations = [NSMutableDictionary dictionaryWithCapacity:1];
     }
     
-    AXError error = AXObserverAddNotification(self.observerRef, accessibilityElement.axElementRef, notification, (__bridge void *)handler);
+    void *refcon = self.observerUsesApplicationCallback ? (__bridge void *)self : (__bridge void *)handler;
+    AXError error = AXObserverAddNotification(self.observerRef, accessibilityElement.axElementRef, notification, refcon);
     
     if (error != kAXErrorSuccess && error != kAXErrorNotificationAlreadyRegistered) {
         return error;

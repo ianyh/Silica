@@ -38,6 +38,17 @@ typedef void (^SIAXNotificationHandler)(SIAccessibilityElement *accessibilityEle
 + (nullable NSArray *)runningApplications;
 
 /**
+ *  Whether notification handlers are looked up through the application when a notification arrives, rather than reached through the observer's context pointer.
+ *
+ *  With the default, NO, each registration hands the accessibility observer a pointer to its handler block. A notification that was already queued when the registration was removed is still delivered afterwards, and it then reaches a handler that has been released.
+ *
+ *  With YES, the observer's context is the application itself: the callback finds the handler in the application's table of live registrations, first by the element the notification arrived with and then, for notifications registered on the application, by the application. A notification whose registration has been removed finds nothing and is dropped. A notification registered both on the application and on one of its windows is delivered to the window's handler.
+ *
+ *  Set this before the first call to observeNotification:withElement:handler:; it takes effect when the observer is created and cannot change while any registration exists.
+ */
+@property (nonatomic, assign) BOOL usesApplicationCallback;
+
+/**
  *  Registers a notification handler for an accessibility notification.
  *
  *  Note that a strong reference to the handler is maintained, so any memory captured by the block will not be released until the notification handler is unregistered by calling unobserveNotification:withElement:
