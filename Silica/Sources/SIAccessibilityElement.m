@@ -9,6 +9,14 @@
 
 #define kAXEnhancedUserInterfaceKey CFSTR("AXEnhancedUserInterface")
 
+static void setAXFrameAttribute(AXUIElementRef element, CFStringRef attribute, AXValueType type, const void *value) {
+    AXValueRef valueRef = AXValueCreate(type, value);
+    if (!valueRef) return;
+
+    AXUIElementSetAttributeValue(element, attribute, valueRef);
+    CFRelease(valueRef);
+}
+
 @interface SIAccessibilityElement ()
 @property (nonatomic, assign) AXUIElementRef axElementRef;
 @end
@@ -194,31 +202,49 @@
 }
 
 - (void)setFrame:(CGRect)frame withThreshold:(CGSize)threshold {
-    // We only want to set the size if the size has actually changed more than a given amount.
     CGRect currentFrame = self.frame;
-    BOOL shouldSetSize = self.isResizable
-        && (fabs(currentFrame.size.width - frame.size.width) >= threshold.width
-        ||  fabs(currentFrame.size.height - frame.size.height) >= threshold.height);
-    
+    BOOL frameUnavailable = CGRectIsNull(currentFrame);
+
+    // Resize only when a dimension reaches its threshold.
+    BOOL sizeDiffers = fabs(currentFrame.size.width - frame.size.width) >= threshold.width
+        || fabs(currentFrame.size.height - frame.size.height) >= threshold.height;
+    BOOL shouldSetSize = sizeDiffers && self.isResizable;
+    BOOL shouldSetPosition = !CGPointEqualToPoint(currentFrame.origin, frame.origin);
+    if (!frameUnavailable && !shouldSetSize && !shouldSetPosition) return;
+
     SIApplication *application = [self app];
     BOOL flag = [[application numberForKey:kAXEnhancedUserInterfaceKey] boolValue];
     if (flag) {
         [application setFlag:NO forKey:kAXEnhancedUserInterfaceKey];
     }
 
-    // We set the size before and after setting the position because the
-    // accessibility APIs are really finicky with setting size.
-    // Note: this still occasionally silently fails to set the correct size.
-    if (shouldSetSize) {
-        self.size = frame.size;
-    }
-
-    if (!CGPointEqualToPoint(currentFrame.origin, frame.origin)) {
-        self.position = frame.origin;
-    }
-
-    if (shouldSetSize) {
-        self.size = frame.size;
+    // Apps can clamp size at the old position. Retry after moving if needed.
+    // The app can still reject the requested size without reporting an error.
+    if (frameUnavailable) {
+        // Keep the public setters' frame checks when the initial read fails.
+        if (shouldSetSize) self.size = frame.size;
+        if (shouldSetPosition) self.position = frame.origin;
+        if (shouldSetSize) self.size = frame.size;
+    } else {
+        if (shouldSetSize) {
+            setAXFrameAttribute(self.axElementRef, kAXSizeAttribute, kAXValueCGSizeType, &frame.size);
+        }
+        if (shouldSetPosition) {
+            setAXFrameAttribute(self.axElementRef, kAXPositionAttribute, kAXValueCGPointType, &frame.origin);
+        }
+        if (shouldSetSize) {
+            CFTypeRef sizeRef = NULL;
+            AXError error = AXUIElementCopyAttributeValue(self.axElementRef, kAXSizeAttribute, &sizeRef);
+            if (sizeRef) {
+                CGSize size;
+                if (error == kAXErrorSuccess && CFGetTypeID(sizeRef) == AXValueGetTypeID()
+                    && AXValueGetValue(sizeRef, kAXValueCGSizeType, &size)
+                    && !CGSizeEqualToSize(size, frame.size)) {
+                    setAXFrameAttribute(self.axElementRef, kAXSizeAttribute, kAXValueCGSizeType, &frame.size);
+                }
+                CFRelease(sizeRef);
+            }
+        }
     }
     
     if (flag) {
